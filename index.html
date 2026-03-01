@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UU Men's Fellowship</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --burnt:    #C1440E;
+    --burnt-dk: #8a2d07;
+    --burnt-lt: #e8683a;
+    --gold:     #C4952A;
+    --gold-lt:  #e8b84b;
+    --parch:    #F5ECD7;
+    --parch-dk: #e8d5b0;
+    --ink:      #1a0f05;
+    --ink-lt:   #3d2510;
+    --smoke:    #f9f4ec;
+    --white:    #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--smoke);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    background: rgba(26,15,5,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(196,149,42,0.3);
+  }
+
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--parch);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--parch);
+    transition: all 0.3s;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: var(--ink);
+    overflow: hidden;
+    padding: 80px 24px 60px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 60%, rgba(193,68,14,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 20%, rgba(196,149,42,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 80%, rgba(138,45,7,0.12) 0%, transparent 60%);
+  }
+
+  .hero-ring {
+    position: absolute;
+    width: min(600px, 90vw);
+    height: min(600px, 90vw);
+    border-radius: 50%;
+    border: 1px solid rgba(196,149,42,0.15);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .hero-ring::before {
+    content: '';
+    position: absolute;
+    inset: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,149,42,0.08);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 720px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 900;
+    line-height: 0.9;
+    color: var(--parch);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--burnt-lt);
+  }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(245,236,215,0.6);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-mission {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    line-height: 1.8;
+    color: rgba(245,236,215,0.75);
+    max-width: 560px;
+    margin: 0 auto 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  .btn-primary {
+    background: var(--burnt);
+    color: var(--white);
+    border: none;
+    padding: 14px 36px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+
+  .btn-primary:hover { background: var(--burnt-dk); transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 14px 36px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { background: var(--gold); color: var(--ink); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.4s forwards;
+  }
+
+  .hero-scroll span {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,236,215,0.4);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(196,149,42,0.6), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 100px 24px;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    color: var(--burnt);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .section-title em { color: var(--burnt); font-style: italic; }
+
+  .section-body {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--ink-lt);
+    max-width: 680px;
+  }
+
+  .gold-rule {
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin: 24px 0;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--parch);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #about::before {
+    content: 'UUMF';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18rem;
+    color: rgba(193,68,14,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .values-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .value-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 24px;
+    background: white;
+    border-left: 4px solid var(--burnt);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .value-item:hover { transform: translateX(6px); box-shadow: -4px 4px 20px rgba(193,68,14,0.1); }
+
+  .value-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--burnt);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .value-text strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .value-text p { font-size: 0.95rem; color: var(--ink-lt); line-height: 1.5; }
+
+  /* ── MEETINGS ── */
+  #meetings { background: var(--ink); }
+
+  #meetings .section-title { color: var(--parch); }
+  #meetings .section-body { color: rgba(245,236,215,0.7); }
+  #meetings .section-label { color: var(--gold); }
+
+  .meetings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    background: rgba(196,149,42,0.2);
+  }
+
+  @media (max-width: 900px) {
+    .meetings-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .meeting-card {
+    background: rgba(26,15,5,0.95);
+    padding: 40px 32px;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .meeting-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--burnt);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .meeting-card:hover { background: rgba(193,68,14,0.08); }
+  .meeting-card:hover::before { transform: scaleX(1); }
+
+  .meeting-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .meeting-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--parch);
+    margin-bottom: 12px;
+  }
+
+  .meeting-card p { font-size: 0.95rem; color: rgba(245,236,215,0.6); line-height: 1.6; }
+
+  .meeting-detail {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(196,149,42,0.2);
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── CHANTS ── */
+  #chants { background: var(--smoke); }
+
+  .chants-intro {
+    background: var(--ink);
+    color: var(--parch-dk);
+    padding: 24px 32px;
+    border-left: 6px solid var(--burnt);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    font-style: italic;
+  }
+
+  .chants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .chant-card {
+    background: white;
+    border: 1px solid var(--parch-dk);
+    padding: 28px;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+  }
+
+  .chant-card:hover {
+    border-color: var(--burnt);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(193,68,14,0.12);
+  }
+
+  .chant-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--parch-dk);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .chant-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .chant-preview {
+    font-size: 0.9rem;
+    color: var(--ink-lt);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .chant-expand {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--burnt);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: transform 0.2s;
+  }
+
+  /* Chant modal */
+  .chant-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 950;
+    background: rgba(26,15,5,0.85);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .chant-modal.open { display: flex; }
+
+  .chant-modal-inner {
+    background: var(--parch);
+    max-width: 560px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 48px 40px;
+    position: relative;
+    border-top: 6px solid var(--burnt);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: var(--ink-lt);
+    line-height: 1;
+  }
+
+  .modal-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    color: var(--burnt);
+    margin-bottom: 8px;
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .modal-lyrics {
+    font-size: 1.05rem;
+    line-height: 2;
+    color: var(--ink-lt);
+    text-align: center;
+    white-space: pre-line;
+  }
+
+  .modal-note {
+    margin-top: 24px;
+    padding: 16px;
+    background: rgba(193,68,14,0.06);
+    border-left: 3px solid var(--burnt);
+    font-size: 0.88rem;
+    color: var(--ink-lt);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* ── RECIPROCITY ── */
+  #reciprocity { background: var(--parch); }
+
+  .reciprocity-table-wrapper {
+    overflow-x: auto;
+    margin-top: 40px;
+    border: 1px solid var(--parch-dk);
+  }
+
+  table.recip {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+    font-size: 0.9rem;
+    background: white;
+  }
+
+  table.recip thead tr {
+    background: var(--burnt);
+    color: white;
+  }
+
+  table.recip thead th {
+    padding: 16px 14px;
+    text-align: left;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+  }
+
+  table.recip tbody tr {
+    border-bottom: 1px solid var(--parch-dk);
+    transition: background 0.15s;
+  }
+
+  table.recip tbody tr:nth-child(even) { background: var(--smoke); }
+  table.recip tbody tr:hover { background: rgba(193,68,14,0.05); }
+
+  table.recip td {
+    padding: 14px;
+    color: var(--ink-lt);
+    vertical-align: top;
+    min-width: 140px;
+  }
+
+  table.recip td input,
+  table.recip td textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px dashed var(--parch-dk);
+    background: transparent;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    padding: 4px 2px;
+    outline: none;
+    resize: none;
+    transition: border-color 0.2s;
+  }
+
+  table.recip td input:focus,
+  table.recip td textarea:focus { border-bottom-color: var(--burnt); }
+
+  .add-row-btn {
+    margin-top: 16px;
+    background: none;
+    border: 1px dashed var(--burnt);
+    color: var(--burnt);
+    padding: 10px 24px;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .add-row-btn:hover { background: var(--burnt); color: white; }
+
+  /* ── SUPPORT GROUPS ── */
+  #support { background: var(--ink); }
+  #support .section-title { color: var(--parch); }
+  #support .section-body { color: rgba(245,236,215,0.7); }
+  #support .section-label { color: var(--gold); }
+
+  .support-form-card {
+    background: rgba(245,236,215,0.05);
+    border: 1px solid rgba(196,149,42,0.2);
+    padding: 40px;
+    margin-top: 48px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-group label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: rgba(245,236,215,0.05);
+    border: none;
+    border-bottom: 1px solid rgba(196,149,42,0.3);
+    padding: 10px 4px;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    color: var(--parch);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(245,236,215,0.3); }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-bottom-color: var(--burnt); }
+
+  .form-group textarea { min-height: 80px; resize: vertical; }
+
+  .form-group select option { background: var(--ink); }
+
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .check-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid rgba(196,149,42,0.3);
+    cursor: pointer;
+    font-size: 0.88rem;
+    color: rgba(245,236,215,0.7);
+    transition: all 0.15s;
+  }
+
+  .check-chip:has(input:checked) {
+    background: var(--burnt);
+    border-color: var(--burnt);
+    color: white;
+  }
+
+  .check-chip input { display: none; }
+
+  /* ── LEADERSHIP ── */
+  #leadership { background: var(--smoke); }
+
+  .leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .leader-card {
+    background: white;
+    padding: 32px 28px;
+    border-bottom: 4px solid var(--burnt);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .leader-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(193,68,14,0.12); }
+
+  .leader-role {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--burnt);
+    margin-bottom: 8px;
+  }
+
+  .leader-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .leader-contact {
+    font-size: 0.88rem;
+    color: var(--ink-lt);
+    opacity: 0.7;
+    font-style: italic;
+  }
+
+  /* ── SONG SECTION ── */
+  #songs { background: var(--parch); }
+
+  .song-card {
+    background: rgba(245,236,215,0.05);
+    padding: 40px;
+    margin-bottom: 24px;
+    border-left: 6px solid var(--gold);
+    position: relative;
+  }
+
+  .song-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .song-author {
+    font-size: 0.9rem;
+    color: var(--burnt);
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+
+  .song-lyrics {
+    font-size: 1.05rem;
+    line-height: 2;
+    color: var(--ink-lt);
+    white-space: pre-line;
+  }
+
+  /* ── EXPANDABLE SONG CARDS ── */
+  .song-card-full {
+    background: white;
+    margin-bottom: 12px;
+    border: 1px solid var(--parch-dk);
+    overflow: hidden;
+  }
+
+  .song-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 28px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-left: 5px solid var(--burnt);
+    gap: 16px;
+  }
+
+  .song-card-header:hover { background: var(--smoke); }
+  .song-card-header.open { background: var(--smoke); }
+
+  .song-hymn-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--burnt);
+    margin-bottom: 4px;
+  }
+
+  .song-title-sm {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .song-author-sm {
+    font-size: 0.85rem;
+    color: var(--ink-lt);
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .song-toggle-icon {
+    font-size: 1.3rem;
+    color: var(--burnt);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .song-card-header.open .song-toggle-icon { transform: rotate(90deg); }
+
+  .song-body {
+    display: none;
+    padding: 28px 28px 32px;
+    border-top: 1px solid var(--parch-dk);
+  }
+
+  .song-body p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--ink-lt);
+    margin-bottom: 16px;
+    font-family: 'Crimson Pro', serif;
+  }
+
+  @media (max-width: 640px) {
+    .song-card-header { padding: 18px 16px; }
+    .song-body { padding: 20px 16px 24px; }
+  }
+
+  /* ── UPCOMING DATES ── */
+  .dates-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .date-card {
+    background: white;
+    border-top: 4px solid var(--parch-dk);
+    padding: 20px 16px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .date-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(193,68,14,0.1);
+    border-top-color: var(--burnt);
+  }
+
+  .date-card.date-special {
+    border-top-color: var(--gold);
+    background: #fffaf2;
+  }
+
+  .date-card.date-special:hover { border-top-color: var(--burnt); }
+
+  .date-month {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: var(--burnt);
+    margin-bottom: 4px;
+  }
+
+  .date-day {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .date-year {
+    font-size: 0.78rem;
+    color: var(--ink-lt);
+    opacity: 0.5;
+    margin-bottom: 10px;
+  }
+
+  .date-note {
+    font-size: 0.82rem;
+    color: var(--ink-lt);
+    font-style: italic;
+    border-top: 1px solid var(--parch-dk);
+    padding-top: 8px;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 900px) { .dates-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .dates-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(245,236,215,0.5);
+    padding: 60px 24px 40px;
+    text-align: center;
+  }
+
+  footer .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  footer p { font-size: 0.9rem; line-height: 1.8; }
+
+  footer .footer-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 24px auto;
+    opacity: 0.4;
+  }
+
+  footer .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  footer .footer-links a {
+    color: rgba(245,236,215,0.4);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  footer .footer-links a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: rgba(26,15,5,0.98); padding: 20px; gap: 16px; }
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: flex; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .meetings-grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    #about::before { display: none; }
+    .chant-modal-inner { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <img src="https://www.firstuusandiego.org/uploads/1/2/7/6/127676152/published/chalice-drum-no-bkgrnd.png?1716058778" alt="UUMF Logo" style="height:44px; width:auto; display:block; filter:brightness(0) invert(1);">
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#meetings">Gatherings</a></li>
+    <li><a href="#chants">Chants</a></li>
+    <li><a href="#songs">Songs</a></li>
+    <li><a href="#reciprocity">Reciprocity</a></li>
+    <li><a href="#support">Support Groups</a></li>
+    <li><a href="#dates">Dates</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-content">
+    <!-- ============================================================
+         EDIT: HERO TEXT
+         Update the tagline, mission paragraph, or button labels below.
+         ============================================================ -->
+    <img src="https://www.firstuusandiego.org/uploads/1/2/7/6/127676152/published/chalice-drum-no-bkgrnd.png?1716058778" alt="UUMF Logo" style="height:140px; width:auto; margin-bottom:24px; opacity:0; animation:fadeUp 0.8s 0.1s forwards; filter:drop-shadow(0 0 24px rgba(196,149,42,0.4));">
+    <div class="hero-eyebrow">First Unitarian Universalist Church of San Diego</div>
+    <h1 class="hero-title">UU Men's<br><em>Fellowship</em></h1>
+    <p class="hero-subtitle">A brotherhood rooted in compassion, integrity, responsibility & balance</p>
+    <p class="hero-mission">We are men deepening who we are — as brothers, sons, fathers, grandfathers, husbands, and partners. A caring, intentionally diverse brotherhood committed to social justice and personal growth.</p>
+    <div class="hero-cta">
+      <a href="#meetings" class="btn-primary">Join a Gathering</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Explore</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <!-- ============================================================
+           EDIT: MISSION STATEMENT
+           Update the three paragraphs of the mission statement below.
+           ============================================================ -->
+      <span class="section-label">Who We Are</span>
+        <h2 class="section-title">Our <em>Mission</em></h2>
+        <div class="gold-rule"></div>
+        <p class="section-body">Our mission is to support men in the quest for lives of compassion, integrity, responsibility, and balance.</p>
+        <br>
+        <p class="section-body">Through mutually supportive work, our fellowship seeks to help men in their development as sons... Fathers... Brothers... Companions and members of society.</p>
+        <br>
+        <p class="section-body">We are a caring, intentionally diverse brotherhood, committed to social justice and offering opportunities for intimate sharing, personal growth, and spiritual deepening.</p>
+      </div>
+      <div class="reveal">
+        <div class="values-list">
+          <div class="value-item">
+            <div class="value-num">01</div>
+            <div class="value-text">
+              <strong>Compassion</strong>
+              <p>For ourselves and those around us — without condition or reserve.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-num">02</div>
+            <div class="value-text">
+              <strong>Integrity</strong>
+              <p>Showing up honestly in all our relationships, especially the hard ones.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-num">03</div>
+            <div class="value-text">
+              <strong>Responsibility</strong>
+              <p>To our families, our communities, and the wider world we share.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-num">04</div>
+            <div class="value-text">
+              <strong>Balance</strong>
+              <p>Nurturing our whole selves — mind, body, and spirit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEETINGS -->
+<section id="meetings">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Gatherings</span>
+      <h2 class="section-title" style="color:var(--parch)">How We <em style="color:var(--burnt-lt)">Meet</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-body">Three ways to enter the fellowship — each one a different depth of engagement.</p>
+    </div>
+    <!-- ============================================================
+         EDIT: GATHERINGS CARDS
+         To update a card: change the text inside <h3>, <p>, or
+         the <div class="meeting-detail"> for each card below.
+         To add a card: copy one full <div class="meeting-card">
+         block and paste it inside the meetings-grid div.
+         ============================================================ -->
+    <div class="meetings-grid reveal">
+
+      <!-- EDIT: Fourth Mondays card -->
+      <div class="meeting-card">
+        <span class="meeting-icon">🌙</span>
+        <h3>Fourth Mondays</h3>
+        <p>Our primary monthly gathering. Potluck dinner at 6pm — bring a dish to share, or just come as you are if you're new. From 7–9pm we check in and discuss topics relevant to men's lives. Most meetings are available on Zoom as well.</p>
+        <div class="meeting-detail">📍 Common Room · Hillcrest Campus</div>
+      </div>
+
+      <!-- EDIT: February Banquet card -->
+      <div class="meeting-card">
+        <span class="meeting-icon">🍽️</span>
+        <h3>February Banquet</h3>
+        <p>A special catered banquet held each February — a celebration of the fellowship and the men in it. A highlight of the year and a wonderful event to bring someone new.</p>
+        <div class="meeting-detail">📅 Each February · Details announced at Fourth Monday</div>
+      </div>
+
+      <!-- EDIT: Yule Log card -->
+      <div class="meeting-card">
+        <span class="meeting-icon">🪵</span>
+        <h3>Yule Log Ceremony</h3>
+        <p>A beloved seasonal tradition during the holiday season. The Yule Log ceremony is a time of reflection, ritual, and brotherhood as the year draws to a close.</p>
+        <div class="meeting-detail">🕯️ Holiday Season · Date announced at Fourth Monday</div>
+      </div>
+
+      <!-- EDIT: Support Groups card -->
+      <div class="meeting-card">
+        <span class="meeting-icon">🤲</span>
+        <h3>Support Groups</h3>
+        <p>Optional small groups of five to eight men that meet at times agreed upon by the group members — at members' homes or on Zoom. Built on trust, confidentiality, and long-term commitment.</p>
+        <div class="meeting-detail">↓ See Support Groups section below</div>
+      </div>
+
+      <!-- EDIT: Renewal Weekends card -->
+      <div class="meeting-card">
+        <span class="meeting-icon">🏕️</span>
+        <h3>Renewal Weekends</h3>
+        <p>Three-day mountain retreats held each Fall and Spring. Fall at Camp Stevens in Julian, Spring at Camp de Benneville Pines. Life-changing events for many men — newcomers especially welcome.</p>
+        <div class="meeting-detail">🍂 Fall · 🌸 Spring</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CHANTS -->
+<section id="chants">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Oral Tradition</span>
+      <h2 class="section-title">The <em>Chants</em></h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="chants-intro reveal">
+      These chants are sung 3 times — the first time robust, the second time louder, the third time quieter or just hummed. The leader often steps up the volume on key phrases. Click any chant to open the full text.
+    </div>
+    <div class="chants-grid reveal" id="chantsGrid"></div>
+  </div>
+</section>
+
+<!-- SONGS -->
+<section id="songs">
+  <div class="container">
+    <div class="reveal">
+      <!-- EDIT: Songs section title and intro -->
+      <span class="section-label">Songs & Hymns</span>
+      <h2 class="section-title">Music of the <em>Fellowship</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-body">Songs and hymns sung at gatherings, renewal weekends, and monthly meetings. Click any title to expand the lyrics.</p>
+    </div>
+
+    <!-- ============================================================
+         EDIT: SONGS — click header to expand/collapse each card.
+         To add a song: copy one song-card-full block, update title,
+         author, hymn number, and lyrics paragraphs inside.
+         ============================================================ -->
+
+    <div style="margin-top:48px;">
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">Hymn #1064</div>
+            <div class="song-title-sm">Blue Boat Home</div>
+            <div class="song-author-sm">Words: Peter Mayer · Music: Rowland H. Prichard</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p>Though below me, I feel no motion<br>standing on these mountains and plains<br>Far away from the rolling ocean<br>still my dry land heart can say:</p>
+          <p>I've been sailing all my life now,<br>never harbor or port have I known<br>The wide universe is the ocean I travel<br>and the earth is my blue boat home</p>
+          <p>Sun my sail and moon my rudder<br>as I ply the starry sea,<br>leaning over the edge in wonder,<br>casting questions into the deep</p>
+          <p>Drifting here with my ship's companions,<br>all we kindred pilgrim souls,<br>making our way by the lights of the heavens<br>in our beautiful blue boat home</p>
+          <p>I give thanks to the waves upholding me,<br>hail the great winds urging me on,<br>greet the infinite sea before me,<br>sing the sky my sailor's song:</p>
+          <p>I was born up on the fathoms,<br>never harbor or port have I known<br>The wide universe is the ocean I travel,<br>and the earth is my blue boat home</p>
+        </div>
+      </div>
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">Hymn #1055</div>
+            <div class="song-title-sm">How Sweet the Darkness</div>
+            <div class="song-author-sm">Words: Rachel Bates · Music: Jason Shelton, © 2002</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p><em>Verse 1:</em><br>When windows that are black and cold<br>are lit anew with fires of gold;<br>When dusk in quiet shall descend<br>and darkness come once more a friend.</p>
+          <p><em>Verse 2:</em><br>When wings pursue their proper flight<br>and bring not terror but delight;<br>When clouds are innocent again<br>and hide no storms of deadly rain;</p>
+          <p><em>Verse 3:</em><br>And when the sky is swept of wars<br>and keeps but gentle moon and stars,<br>that peaceful sky, that harmless air,<br>how sweet, how sweet the darkness there.</p>
+        </div>
+      </div>
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">Hymn #1066</div>
+            <div class="song-title-sm">O Brother Sun</div>
+            <div class="song-author-sm">Adapted from St. Francis of Assisi by Sharon Anway, © 2004 · Music: Traditional Scottish</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p><em>Verse 1:</em><br>O Brother Sun, you bring us light,<br>all shining 'round in fiery might.<br>O Sister Moon, you heal and bless,<br>your beauty shines in tenderness.</p>
+          <p><em>Verse 2:</em><br>O Brother Fire, you warm our night<br>with all your dancing colored light.<br>O Sister Earth, you feed all things,<br>all birds, all creatures, all scales and wings.</p>
+          <p>O Brother Wind, you sweep the hills,<br>your mighty breath both freshens and fills.<br>O Sister Water, you cleanse and flow<br>through rivers and streams, in ice and snow.</p>
+          <p>O Sister Death, you meet us here<br>and take us to our God so near.<br>O God of Life, we give you praise<br>for all your creatures, for all your ways.</p>
+        </div>
+      </div>
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">First UU Church Hymn</div>
+            <div class="song-title-sm">From All Who Dwell Below the Skies</div>
+            <div class="song-author-sm">Bilingual: English & Spanish</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p>From all who dwell below the skies,<br>Let faith and hope with love arise,<br>Let beauty, truth, and good be sung<br>Through every land, by every tongue</p>
+          <p><em>En Español:</em><br>De todos bajo el gran sol<br>Surja esperanza, fe, amor<br>Verdad y belleza cantando,<br>De cada tierra, cada voz</p>
+        </div>
+      </div>
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">Classic</div>
+            <div class="song-title-sm">Stand By Me</div>
+            <div class="song-author-sm">Ben E. King · Brotherhood version used at closings</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p>When the night has come<br>And the land is dark<br>And the moon is the only light we'll see<br>No, I won't be afraid<br>No, I won't be afraid<br>Just as long as you stand, stand by me</p>
+          <p>So Brother, Brother, stand by me<br>Oh, stand by me<br>... Oh, stand<br>Stand by me (stand by me)</p>
+          <p>If the sky that we look upon<br>Should tumble and fall<br>Or the mountains should crumble to the sea<br>I won't cry, I won't cry<br>No, I won't shed a tear<br>Just as long as you stand, Stand by me</p>
+          <p>Whenever you're in trouble,<br>Won't you stand by me<br>Oh, stand by me<br>Oh, just stand now<br>Oh, stand, stand by me</p>
+        </div>
+      </div>
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">Classic</div>
+            <div class="song-title-sm">Daydream</div>
+            <div class="song-author-sm">The Lovin' Spoonful · Used at lighter gatherings</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p>What a day for a daydream<br>What a day for a daydreamin' boy<br>And now I'm lost in a daydream<br>Dreamin' 'bout my bundle of joy</p>
+          <p>I've been havin' a sweet dream<br>I've been dreamin' since I woke up today<br>It's starrin' me and my sweet thing<br>'Cause he's the one makes me feel this way</p>
+          <p>And you can be sure that if you're feelin' allright<br>A daydream will last 'til long into the night<br>Tomorrow at breakfast, you may prick up your ears<br>Or you may be dreamin' for a thousand years</p>
+          <p>What a day for a daydream<br>Custom-made for a daydreamin' boy<br>Now I'm lost in a daydream<br>Dreamin' 'bout my bundle of joy</p>
+        </div>
+      </div>
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">UUMF Chant Song</div>
+            <div class="song-title-sm">Unitarian Universalism</div>
+            <div class="song-author-sm">Presented by Laila Ibrahim · de Benneville Summer Break Workshop</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p>It's a blessing each of us was born<br>It matters what we do with our lives<br>What each of us knows about God is a piece of the truth<br>We don't have to do it alone<br>Unitarian Universalism</p>
+          <p style="font-style:italic; color:var(--ink-lt); font-size:0.9rem;">Note: Not yet an official UUMF chant — introduced at a de Benneville Summer Break workshop.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- POEMS & READINGS -->
+<section id="poems" style="background:var(--ink); padding:100px 24px;">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label" style="color:var(--gold);">Poems & Readings</span>
+      <h2 class="section-title" style="color:var(--parch);">Words That <em style="color:var(--burnt-lt);">Hold Us</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-body" style="color:rgba(245,236,215,0.7);">Poems and readings used at gatherings, renewals, and monthly meetings.</p>
+    </div>
+    <div class="reveal" style="margin-top:48px;">
+      <div class="song-card" style="border-left-color:var(--gold); background:rgba(245,236,215,0.05); border:1px solid rgba(196,149,42,0.2);">
+        <div class="song-title" style="color:var(--parch);">Dark of Winter</div>
+        <div class="song-author" style="color:var(--gold);">Words by Shelly Jackson Denham · Used at winter gatherings & renewal weekends</div>
+        <div class="song-lyrics" style="color:rgba(245,236,215,0.75);">Dark of winter, soft and still,
+Your quiet calm surrounds me.
+Let my thoughts go where they will,
+Ease my mind profoundly
+And then my soul will sing a song,
+A blessed song of love eternal.
+Gentle darkness soft and still
+Bring your quiet to me.
+
+Darkness, soothe my weary eyes,
+That I may see more clearly.
+When my heart with sorrow cries,
+Comfort and caress me.
+And then my soul may hear a voice,
+A still small voice of love eternal.
+Darkness, when my fears arise,
+Let your peace flow through me.</div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:24px;">
+      <p style="color:rgba(245,236,215,0.4); font-style:italic; font-size:0.9rem;">Members — add poems and readings that have moved you. Include title, author, and when it was used.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RECIPROCITY RING -->
+<section id="reciprocity">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Brotherhood in Action</span>
+      <h2 class="section-title">The Reciprocity <em>Ring</em></h2>
+      <div class="gold-rule"></div>
+      <!-- EDIT: Reciprocity Ring description -->
+      <p class="section-body">A space where members share what they need and what they can offer. Whether it's help with a home project, a skill to share, or a resource to lend — we are stronger together. Add your entry directly in the sheet below.</p>
+    </div>
+    <!-- EDIT: Google Sheet embed — to update, go to File > Share > Publish to web
+         in your Google Sheet, choose "Entire Document" and "Web page", copy the
+         embed URL and replace the src below. -->
+    <div class="reveal" style="margin-top:40px;">
+      <iframe
+        src="https://docs.google.com/spreadsheets/d/1RL9P-ROWlDFUy_MHeab4h7inzml5b5I96X4caKfgX9U/pubhtml?widget=true&amp;headers=false"
+        style="width:100%; height:520px; border:2px solid var(--gold); border-radius:4px;"
+        title="UUMF Reciprocity Ring">
+      </iframe>
+    </div>
+    <div class="reveal" style="margin-top:16px;">
+      <a href="https://docs.google.com/spreadsheets/d/1RL9P-ROWlDFUy_MHeab4h7inzml5b5I96X4caKfgX9U/edit" target="_blank" class="btn-primary" style="display:inline-block; text-decoration:none;">
+        ✏️ &nbsp;Add Your Entry
+      </a>
+      <p style="margin-top:12px; font-size:0.85rem; color:var(--ink-lt); font-style:italic;">Opens the shared Google Sheet — sign in with your Google account to add or edit your row.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT GROUPS -->
+<section id="support">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Deep Community</span>
+      <h2 class="section-title" style="color:var(--parch)">Support <em style="color:var(--burnt-lt)">Groups</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-body">Our support groups are the heart of long-term community in the fellowship. Each group meets at times agreed upon by members — at homes or on Zoom. Five to eight men, built on trust, confidentiality, and long-term commitment.</p>
+    </div>
+    <!-- EDIT: Support groups contact message -->
+    <div class="support-form-card reveal" style="margin-top:48px; text-align:center; padding:56px 40px;">
+      <div style="font-size:2.5rem; margin-bottom:16px;">🤲</div>
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--parch); margin-bottom:16px;">Interested in Joining a Support Group?</h3>
+      <p style="color:rgba(245,236,215,0.7); font-size:1.05rem; line-height:1.8; max-width:500px; margin:0 auto 32px;">
+        Bring it up at the next Fourth Monday gathering — any Steering Committee member can connect you with the right group or coordinator.
+      </p>
+      <a href="#meetings" style="display:inline-block; background:var(--burnt); color:white; padding:13px 36px; font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.15em; text-decoration:none; transition:background 0.2s;" onmouseover="this.style.background='#8a2d07'" onmouseout="this.style.background='var(--burnt)'">
+        See When We Meet
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- UPCOMING DATES -->
+<section id="dates" style="background:var(--parch);">
+  <div class="container">
+    <div class="reveal">
+      <!-- EDIT: Upcoming dates section title -->
+      <span class="section-label">Mark Your Calendar</span>
+      <h2 class="section-title">Upcoming <em>Dates</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-body">Fourth Monday gatherings for 2026 — potluck at 6pm, check-in and discussion 7–9pm. Hillcrest Campus, Common Room. Most meetings also available on Zoom.</p>
+    </div>
+
+    <!-- ============================================================
+         EDIT: UPCOMING DATES
+         Update the "notes" column for any special events on that date.
+         To mark a date as past, add: style="opacity:0.4;"
+         To add a special event note, edit the <span class="date-note"> text.
+         ============================================================ -->
+    <div class="dates-grid reveal" style="margin-top:48px;">
+
+      <div class="date-card">
+        <div class="date-month">January</div>
+        <div class="date-day">26</div>
+        <div class="date-year">2026</div>
+        <div class="date-note">Fourth Monday</div>
+      </div>
+
+      <div class="date-card date-special">
+        <div class="date-month">February</div>
+        <div class="date-day">23</div>
+        <div class="date-year">2026</div>
+        <div class="date-note">🍽️ Annual Banquet</div>
+      </div>
+
+      <div class="date-card">
+        <div class="date-month">March</div>
+        <div class="date-day">23</div>
+        <div class="date-year">2026</div>
+        <div class="date-note">Fourth Monday</div>
+      </div>
+
+      <div class="date-card">
+        <div class="date-month">April</div>
+        <div class="date-day">27</div>
+        <div class="date-year">2026</div>
+        <div class="date-note">Fourth Monday</div>
+      </div>
+
+      <div class="date-card">
+        <div class="date-month">May</div>
+        <div class="date-day">25</div>
+        <div class="date-year">2026</div>
+        <div class="date-note">Fourth Monday</div>
+      </div>
+
+      <div class="date-card">
+        <div class="date-month">June</div>
+        <div class="date-day">22</div>
+        <div class="date-year">2026</div>
+        <div class="date-note">Fourth Monday</div>
+      </div>
+
+      <div class="date-card">
+        <div class="date-month">July</div>
+        <div class="date-day">27</div>
+        <div class="date-year">2026</div>
+        <div class="date-note">Fourth Monday</div>
+      </div>
+
+      <div class="date-card">
+        <div class="date-month">August</div>
+        <div class="date-day">24</div>
+        <div class="date-year">2026</div>
+        <div class="date-note">Fourth Monday</div>
+      </div>
+
+      <div class="date-card">
+        <div class="date-month">September</div>
+        <div class="date-day">28</div>
+        <div class="date-year">2026</div>
+        <div class="date-note">Fourth Monday</div>
+      </div>
+
+      <div class="date-card">
+        <div class="date-month">October</div>
+        <div class="date-day">26</div>
+        <div class="date-year">2026</div>
+        <div class="date-note">Fourth Monday</div>
+      </div>
+
+      <div class="date-card date-special">
+        <div class="date-month">November</div>
+        <div class="date-day">23</div>
+        <div class="date-year">2026</div>
+        <div class="date-note">🍂 Fall Renewal Weekend TBD</div>
+      </div>
+
+      <div class="date-card date-special">
+        <div class="date-month">December</div>
+        <div class="date-day">28</div>
+        <div class="date-year">2026</div>
+        <div class="date-note">🪵 Yule Log Ceremony</div>
+      </div>
+
+    </div>
+
+    <p class="reveal" style="margin-top:24px; font-size:0.88rem; font-style:italic; color:var(--ink-lt);">
+      All meetings begin with potluck dinner at 6pm · Discussion 7–9pm · Hillcrest Campus, Common Room
+    </p>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Who to Reach</span>
+      <h2 class="section-title">Leadership & <em>Contacts</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-body">The UUMF is guided by a Steering Committee operating on a consensus model. All members are welcome to participate.</p>
+    </div>
+    <!-- ============================================================
+         EDIT: LEADERSHIP CARDS
+         Update names, roles, and contact notes for each leader.
+         To add a new card: copy one <div class="leader-card"> block.
+         ============================================================ -->
+    <div class="leadership-grid reveal">
+      <div class="leader-card">
+        <div class="leader-role">Co-Convener</div>
+        <div class="leader-name">Jim Hurtado</div>
+        <div class="leader-contact">Monthly meetings & general info</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-role">Co-Convener</div>
+        <div class="leader-name">Chris Guelich</div>
+        <div class="leader-contact">Steering Committee & direction</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-role">Renewals Contact</div>
+        <div class="leader-name">Mike Dorfi</div>
+        <div class="leader-contact">Fall & Spring renewal weekends</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-role">Support Group Coordinator</div>
+        <div class="leader-name">[Name]</div>
+        <div class="leader-contact">Support group placement & formation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<!-- ============================================================
+     EDIT: FOOTER — update address, links, or credit line here
+     ============================================================ -->
+<footer>
+  <div class="footer-brand">UU Men's Fellowship</div>
+  <!-- EDIT: Church address -->
+  <p>First Unitarian Universalist Church of San Diego<br>Hillcrest Campus · Common Room</p>
+  <div class="footer-divider"></div>
+  <p style="font-size:0.8rem;">Living with compassion, integrity, responsibility, and balance.</p>
+  <!-- EDIT: Footer navigation links -->
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#meetings">Gatherings</a>
+    <a href="#chants">Chants</a>
+    <a href="#reciprocity">Reciprocity</a>
+    <a href="#support">Support Groups</a>
+    <a href="#leadership">Leadership</a>
+    <a href="https://www.firstuusandiego.org" target="_blank">First UU San Diego</a>
+  </div>
+  <!-- EDIT: Creator credit -->
+  <p style="margin-top:40px; font-size:0.75rem; opacity:0.3;">Website & handbook created by Bryan Lane · February 2026 · UU Men's Fellowship</p>
+</footer>
+
+<!-- CHANT MODAL -->
+<div class="chant-modal" id="chantModal">
+  <div class="chant-modal-inner">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-num" id="modalNum"></div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-lyrics" id="modalLyrics"></div>
+    <div class="modal-note" id="modalNote" style="display:none;"></div>
+  </div>
+</div>
+
+<script>
+  // ── CHANT DATA ──
+  const chants = [
+    { num: 1, title: "When I Breathe In", preview: "When I breathe in, I breathe in peace...",
+      lyrics: "When I breathe in, I breathe in peace\nWhen I breathe out, I breathe out love", note: "" },
+    { num: 2, title: "Comfort Me", preview: "Comfort me, comfort me, comfort me oh my soul...",
+      lyrics: "Comfort me, comfort me, comfort me oh my soul\n(sing, dance, speak for, etc.)", note: "" },
+    { num: 3, title: "Journey Together", preview: "We are going, on a journey together...",
+      lyrics: "We are going, on a journey together\nTakin' it easy, takin' it slow\nNow more hurry, no more worry\nNothin' to carry, let it all go",
+      note: "The words \"slow\" and \"go\" are sung more slowly and in the deeper range of your voice. The rest should be robust with good cadence. The leader often steps up the volume on \"we are going.\"" },
+    { num: 4, title: "Listen to My Heart Song", preview: "Listen, listen, listen to my heart song...",
+      lyrics: "Listen, listen, listen to my heart song (repeat)\nI will never forget you, I will never forsake you (repeat)", note: "" },
+    { num: 5, title: "I Am a Circle", preview: "I am a circle... I am healing you...",
+      lyrics: "I am a circle... I am healing you\nYou are a circle... you are healing me\nUnite us, make us one... Unite us, make us one\n\nlast verse: \"we ARE one\"",
+      note: "The word \"unite\" slides into a three-syllable pronunciation: you-ewe-nite" },
+    { num: 6, title: "Grandfather", preview: "Grandfather, grandfather, we are calling...",
+      lyrics: "I    Grandfather, grandfather, we are calling (repeat)\n     Come, come, come\nII   We are calling all our brothers (repeat)\n     Who have gone before\nIII  We are calling all our fathers (repeat)\n     Who have gone before", note: "" },
+    { num: 7, title: "All This Joy", preview: "All this joy, all this sorrow...",
+      lyrics: "All this joy, all this sorrow, all this promise, all this change\nSuch is life, such is being, such is spirit, such is love", note: "" },
+    { num: 8, title: "Earth My Body", preview: "Earth my Body, Water my Blood...",
+      lyrics: "Earth my Body, Water my Blood\nAir my Breath and FIRE my spirit", note: "" },
+    { num: 9, title: "Spiraling", preview: "Spiraling into the center...",
+      lyrics: "Spiraling into the center, the center of the wheel (repeat)\nI am the weaver, I am the woven one\nI am the dreamer, I am the dream", note: "" },
+    { num: 10, title: "Return Again", preview: "Return again, return again...",
+      lyrics: "Return again, return again\nReturn to the home of your soul (repeat)\nReturn to who you are, return to what you are\nReturn to where you are\nBorn and reborn again (repeat)", note: "" },
+    { num: 11, title: "Go in Peace", preview: "Go in peace, go in kindness...",
+      lyrics: "Go in peace, go in kindness, go in joy, go in love\nLeave the day, the day behind us, day is done, go in grace\nLet us go into the dark, not afraid, not alone\nLet us hope by some good pleasure, safely to arrive at home\n(repeat last line)", note: "" },
+    { num: 12, title: "Draw the Circle Wide", preview: "Draw the circle, draw the circle wide...",
+      lyrics: "Draw the circle, draw the circle wide\nDraw the circle, draw the circle wide\nNo one stands alone, we'll stand side by side\nDraw the circle, draw the circle wide (repeat)\n\nDraw the circle wide, draw it wider still\nLet this be our song — no one stands alone\nStanding side by side\nDraw the circle, draw the circle wide (repeat)\n\nDraw the circle, draw the circle wide.", note: "" },
+    { num: 13, title: "Pura Sa May", preview: "Pura sa may, Pura sa may...",
+      lyrics: "Pura sa may, Pura sa may, pura sa may-o, pura sa may\nPura ma may, pura ma may, pura ma may-o, pura ma may", note: "" },
+    { num: 14, title: "Om Na Ma Shive", preview: "Om na ma shive...",
+      lyrics: "Om na ma shive (repeat 3 times)\nShiva om na ma", note: "" },
+    { num: 15, title: "Man in Me", preview: "There's a man in me, there's a man in you...",
+      lyrics: "There's a man in me, there's a man in you\nThere's a woman in me, there's a woman in you\nThere's a child in me... there's a child in you\nThere's a god(ess) in me, there's a god(ess) in you\n\nAND the man in me loves the man in you\nAnd woman in me...\nAnd the god(ess) in me IS the god(ess) in you", note: "" },
+  ];
+
+  // Render chant cards
+  const grid = document.getElementById('chantsGrid');
+  chants.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'chant-card';
+    card.innerHTML = `
+      <div class="chant-num">${String(c.num).padStart(2,'0')}</div>
+      <div class="chant-title">${c.title}</div>
+      <div class="chant-preview">${c.preview}</div>
+      <div class="chant-expand">+</div>
+    `;
+    card.addEventListener('click', () => openModal(c));
+    grid.appendChild(card);
+  });
+
+  // Modal
+  const modal = document.getElementById('chantModal');
+  const modalClose = document.getElementById('modalClose');
+
+  function openModal(c) {
+    document.getElementById('modalNum').textContent = `Chant ${c.num}`;
+    document.getElementById('modalTitle').textContent = c.title;
+    document.getElementById('modalLyrics').textContent = c.lyrics;
+    const noteEl = document.getElementById('modalNote');
+    if (c.note) { noteEl.textContent = c.note; noteEl.style.display = 'block'; }
+    else { noteEl.style.display = 'none'; }
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ── NAV TOGGLE ──
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // Close nav on link click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── SONG ACCORDION ──
+  function toggleSong(header) {
+    const card = header.parentElement;
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.song-card-full.open').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+</script>
+
+</body>
+</html>
