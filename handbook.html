@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The UUMF Handbook — our chants, songs, poems, traditions, and norms. The living guide to fellowship life.">
+<title>Handbook — UU Men's Fellowship</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- PAGE HERO -->
+<section style="background:var(--ink); padding:120px 24px 80px; text-align:center;">
+  <div class="container">
+    <span class="section-label" style="color:var(--gold);">Our Living Guide</span>
+    <h1 class="section-title" style="color:var(--parch); font-size:clamp(2.5rem,6vw,4rem);">The <em style="color:var(--burnt-lt);">Handbook</em></h1>
+    <div class="gold-rule" style="margin:24px auto;"></div>
+    <p class="section-body" style="color:rgba(245,236,215,0.7); margin:0 auto;">Chants, songs, poems, traditions, and the norms that hold us. Everything passed down through the oral and written life of the fellowship.</p>
+  </div>
+</section>
+
+<!-- SUB-NAV -->
+<div class="sub-nav">
+  <div class="sub-nav-inner">
+    <a href="#norms">Norms &amp; Traditions</a>
+    <a href="#chants">Chants</a>
+    <a href="#songs">Songs</a>
+    <a href="#poems">Poems</a>
+  </div>
+</div>
+
+<!-- NORMS & TRADITIONS -->
+<section id="norms" style="background:var(--parch);">
+  <div class="container">
+    <div class="reveal">
+      <!-- ============================================================
+           EDIT: NORMS & TRADITIONS
+           Add or update the fellowship's agreements and practices here.
+           ============================================================ -->
+      <span class="section-label">How We Be Together</span>
+      <h2 class="section-title">Norms &amp; <em>Traditions</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-body">These are the agreements and practices that make the fellowship a safe and meaningful space. They are not rules — they are invitations.</p>
+    </div>
+
+    <div class="values-list reveal" style="margin-top:48px; max-width:720px;">
+      <div class="value-item">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <strong>Confidentiality</strong>
+          <p>What is shared in the circle stays in the circle. Men speak freely because trust is the ground we stand on.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <strong>No Cross-Talk During Check-In</strong>
+          <p>When a man is checking in, we listen without comment, advice, or response. He speaks; we receive. There is time for dialogue in the discussion that follows.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <strong>Speak from Your Own Experience</strong>
+          <p>Use "I" statements. We share our own stories, not prescriptions for others. "I feel..." not "You should..."</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">04</div>
+        <div class="value-text">
+          <strong>Step Up, Step Back</strong>
+          <p>If you tend toward silence, step into the circle more. If you tend to fill space, leave room for others. We take care of the whole group's voice.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">05</div>
+        <div class="value-text">
+          <strong>Chants Are Sung Together</strong>
+          <p>Chants are sung three times — the first time robust, the second louder, the third quieter or hummed. The leader often steps up volume on key phrases. Tune out your inner critic and just sing.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">06</div>
+        <div class="value-text">
+          <strong>The Potluck Is Part of the Gathering</strong>
+          <p>Breaking bread together is the first act of fellowship. Come early enough to share the meal. First-timers are never expected to bring food.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANTS -->
+<section id="chants" style="background:var(--smoke);">
+  <div class="container">
+    <div class="reveal">
+      <!-- ============================================================
+           EDIT: CHANTS
+           Chant data is in assets/js/chants-data.js — edit it there.
+           To add a new chant, add an entry to the chants[] array.
+           ============================================================ -->
+      <span class="section-label">Oral Tradition</span>
+      <h2 class="section-title">The <em>Chants</em></h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="chants-intro reveal">
+      These chants are sung 3 times — the first time robust, the second time louder, the third time quieter or just hummed. The leader often steps up the volume on key phrases. Click any chant to open the full text.
+    </div>
+    <div class="chants-grid reveal" id="chantsGrid"></div>
+  </div>
+</section>
+
+<!-- SONGS -->
+<section id="songs">
+  <div class="container">
+    <div class="reveal">
+      <!-- ============================================================
+           EDIT: SONGS — click header to expand/collapse each card.
+           To add a song: copy one song-card-full block, update title,
+           author, hymn number, and lyrics paragraphs inside.
+           ============================================================ -->
+      <span class="section-label">Songs &amp; Hymns</span>
+      <h2 class="section-title">Music of the <em>Fellowship</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-body">Songs and hymns sung at gatherings, renewal weekends, and monthly meetings. Click any title to expand the lyrics.</p>
+    </div>
+
+    <div style="margin-top:48px;">
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">Hymn #1064</div>
+            <div class="song-title-sm">Blue Boat Home</div>
+            <div class="song-author-sm">Words: Peter Mayer · Music: Rowland H. Prichard</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p>Though below me, I feel no motion<br>standing on these mountains and plains<br>Far away from the rolling ocean<br>still my dry land heart can say:</p>
+          <p>I've been sailing all my life now,<br>never harbor or port have I known<br>The wide universe is the ocean I travel<br>and the earth is my blue boat home</p>
+          <p>Sun my sail and moon my rudder<br>as I ply the starry sea,<br>leaning over the edge in wonder,<br>casting questions into the deep</p>
+          <p>Drifting here with my ship's companions,<br>all we kindred pilgrim souls,<br>making our way by the lights of the heavens<br>in our beautiful blue boat home</p>
+          <p>I give thanks to the waves upholding me,<br>hail the great winds urging me on,<br>greet the infinite sea before me,<br>sing the sky my sailor's song:</p>
+          <p>I was born up on the fathoms,<br>never harbor or port have I known<br>The wide universe is the ocean I travel,<br>and the earth is my blue boat home</p>
+        </div>
+      </div>
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">Hymn #1055</div>
+            <div class="song-title-sm">How Sweet the Darkness</div>
+            <div class="song-author-sm">Words: Rachel Bates · Music: Jason Shelton, © 2002</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p><em>Verse 1:</em><br>When windows that are black and cold<br>are lit anew with fires of gold;<br>When dusk in quiet shall descend<br>and darkness come once more a friend.</p>
+          <p><em>Verse 2:</em><br>When wings pursue their proper flight<br>and bring not terror but delight;<br>When clouds are innocent again<br>and hide no storms of deadly rain;</p>
+          <p><em>Verse 3:</em><br>And when the sky is swept of wars<br>and keeps but gentle moon and stars,<br>that peaceful sky, that harmless air,<br>how sweet, how sweet the darkness there.</p>
+        </div>
+      </div>
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">Hymn #1066</div>
+            <div class="song-title-sm">O Brother Sun</div>
+            <div class="song-author-sm">Adapted from St. Francis of Assisi by Sharon Anway, © 2004 · Music: Traditional Scottish</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p><em>Verse 1:</em><br>O Brother Sun, you bring us light,<br>all shining 'round in fiery might.<br>O Sister Moon, you heal and bless,<br>your beauty shines in tenderness.</p>
+          <p><em>Verse 2:</em><br>O Brother Fire, you warm our night<br>with all your dancing colored light.<br>O Sister Earth, you feed all things,<br>all birds, all creatures, all scales and wings.</p>
+          <p>O Brother Wind, you sweep the hills,<br>your mighty breath both freshens and fills.<br>O Sister Water, you cleanse and flow<br>through rivers and streams, in ice and snow.</p>
+          <p>O Sister Death, you meet us here<br>and take us to our God so near.<br>O God of Life, we give you praise<br>for all your creatures, for all your ways.</p>
+        </div>
+      </div>
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">First UU Church Hymn</div>
+            <div class="song-title-sm">From All Who Dwell Below the Skies</div>
+            <div class="song-author-sm">Bilingual: English &amp; Spanish</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p>From all who dwell below the skies,<br>Let faith and hope with love arise,<br>Let beauty, truth, and good be sung<br>Through every land, by every tongue</p>
+          <p><em>En Español:</em><br>De todos bajo el gran sol<br>Surja esperanza, fe, amor<br>Verdad y belleza cantando,<br>De cada tierra, cada voz</p>
+        </div>
+      </div>
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">Classic</div>
+            <div class="song-title-sm">Stand By Me</div>
+            <div class="song-author-sm">Ben E. King · Brotherhood version used at closings</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p>When the night has come<br>And the land is dark<br>And the moon is the only light we'll see<br>No, I won't be afraid<br>No, I won't be afraid<br>Just as long as you stand, stand by me</p>
+          <p>So Brother, Brother, stand by me<br>Oh, stand by me<br>... Oh, stand<br>Stand by me (stand by me)</p>
+          <p>If the sky that we look upon<br>Should tumble and fall<br>Or the mountains should crumble to the sea<br>I won't cry, I won't cry<br>No, I won't shed a tear<br>Just as long as you stand, Stand by me</p>
+          <p>Whenever you're in trouble,<br>Won't you stand by me<br>Oh, stand by me<br>Oh, just stand now<br>Oh, stand, stand by me</p>
+        </div>
+      </div>
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">Classic</div>
+            <div class="song-title-sm">Daydream</div>
+            <div class="song-author-sm">The Lovin' Spoonful · Used at lighter gatherings</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p>What a day for a daydream<br>What a day for a daydreamin' boy<br>And now I'm lost in a daydream<br>Dreamin' 'bout my bundle of joy</p>
+          <p>I've been havin' a sweet dream<br>I've been dreamin' since I woke up today<br>It's starrin' me and my sweet thing<br>'Cause he's the one makes me feel this way</p>
+          <p>And you can be sure that if you're feelin' allright<br>A daydream will last 'til long into the night<br>Tomorrow at breakfast, you may prick up your ears<br>Or you may be dreamin' for a thousand years</p>
+          <p>What a day for a daydream<br>Custom-made for a daydreamin' boy<br>Now I'm lost in a daydream<br>Dreamin' 'bout my bundle of joy</p>
+        </div>
+      </div>
+
+      <div class="song-card-full reveal">
+        <div class="song-card-header" onclick="toggleSong(this)">
+          <div>
+            <div class="song-hymn-num">UUMF Chant Song</div>
+            <div class="song-title-sm">Unitarian Universalism</div>
+            <div class="song-author-sm">Presented by Laila Ibrahim · de Benneville Summer Break Workshop</div>
+          </div>
+          <div class="song-toggle-icon">▶</div>
+        </div>
+        <div class="song-body">
+          <p>It's a blessing each of us was born<br>It matters what we do with our lives<br>What each of us knows about God is a piece of the truth<br>We don't have to do it alone<br>Unitarian Universalism</p>
+          <p style="font-style:italic; color:var(--ink-lt); font-size:0.9rem;">Note: Not yet an official UUMF chant — introduced at a de Benneville Summer Break workshop.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- POEMS & READINGS -->
+<section id="poems" style="background:var(--ink); padding:100px 24px;">
+  <div class="container">
+    <div class="reveal">
+      <!-- ============================================================
+           EDIT: POEMS & READINGS
+           To add a poem: copy the song-card div below and fill in
+           title, author, and poem text in .song-lyrics
+           ============================================================ -->
+      <span class="section-label" style="color:var(--gold);">Poems &amp; Readings</span>
+      <h2 class="section-title" style="color:var(--parch);">Words That <em style="color:var(--burnt-lt);">Hold Us</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-body" style="color:rgba(245,236,215,0.7);">Poems and readings used at gatherings, renewals, and monthly meetings.</p>
+    </div>
+    <div class="reveal" style="margin-top:48px;">
+      <div class="song-card" style="border-left-color:var(--gold); background:rgba(245,236,215,0.05); border:1px solid rgba(196,149,42,0.2);">
+        <div class="song-title" style="color:var(--parch);">Dark of Winter</div>
+        <div class="song-author" style="color:var(--gold);">Words by Shelly Jackson Denham · Used at winter gatherings &amp; renewal weekends</div>
+        <div class="song-lyrics" style="color:rgba(245,236,215,0.75);">Dark of winter, soft and still,
+Your quiet calm surrounds me.
+Let my thoughts go where they will,
+Ease my mind profoundly
+And then my soul will sing a song,
+A blessed song of love eternal.
+Gentle darkness soft and still
+Bring your quiet to me.
+
+Darkness, soothe my weary eyes,
+That I may see more clearly.
+When my heart with sorrow cries,
+Comfort and caress me.
+And then my soul may hear a voice,
+A still small voice of love eternal.
+Darkness, when my fears arise,
+Let your peace flow through me.</div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:24px;">
+      <p style="color:rgba(245,236,215,0.4); font-style:italic; font-size:0.9rem;">Members — add poems and readings that have moved you. Include title, author, and when it was used.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHANT MODAL -->
+<div class="chant-modal" id="chantModal">
+  <div class="chant-modal-inner">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-num" id="modalNum"></div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-lyrics" id="modalLyrics"></div>
+    <div class="modal-note" id="modalNote" style="display:none;"></div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script src="assets/js/chants-data.js"></script>
+<script src="assets/js/components.js"></script>
+<script>
+  // Render chant cards
+  const grid = document.getElementById('chantsGrid');
+  chants.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'chant-card';
+    card.innerHTML = `
+      <div class="chant-num">${String(c.num).padStart(2,'0')}</div>
+      <div class="chant-title">${c.title}</div>
+      <div class="chant-preview">${c.preview}</div>
+      <div class="chant-expand">+</div>
+    `;
+    card.addEventListener('click', () => openModal(c));
+    grid.appendChild(card);
+  });
+
+  // Chant modal
+  const modal      = document.getElementById('chantModal');
+  const modalClose = document.getElementById('modalClose');
+
+  function openModal(c) {
+    document.getElementById('modalNum').textContent   = `Chant ${c.num}`;
+    document.getElementById('modalTitle').textContent = c.title;
+    document.getElementById('modalLyrics').textContent = c.lyrics;
+    const noteEl = document.getElementById('modalNote');
+    if (c.note) { noteEl.textContent = c.note; noteEl.style.display = 'block'; }
+    else { noteEl.style.display = 'none'; }
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  loadPartials();
+</script>
+</body>
+</html>
