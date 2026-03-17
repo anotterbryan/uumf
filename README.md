@@ -31,7 +31,6 @@ uumf/
 ├── handbook.html           ← Chants, songs, poems, norms & traditions
 ├── focus-groups.html       ← Small support groups (5–8 men)
 ├── connecting.html         ← How to join, Reciprocity Ring, FAQ, contacts
-├── donate.html             ← Potluck fund, members in need, activities fund
 ├── history.html            ← Organization history (placeholder — add content)
 │
 ├── assets/
@@ -60,7 +59,6 @@ uumf/
 | **Handbook** | `handbook.html` | Norms, 15 chants (modal), 7 songs (accordion), poems |
 | **Focus Groups** | `focus-groups.html` | What they are, how they work, how to join |
 | **Connect** | `connecting.html` | How to join, Reciprocity Ring, FAQ, contact info |
-| **Donate** | `donate.html` | Potluck fund, members in need, activities fund, payment links |
 | **History** | `history.html` | Placeholder — leadership to fill with founding story |
 
 ---
@@ -108,14 +106,6 @@ Open `about.html` and `connecting.html`. Find the `<!-- EDIT: LEADERSHIP CARDS -
 
 ### Update Renewal Weekend Details
 Open `renewals.html`. Each renewal has a `<!-- EDIT: SPRING/FALL RENEWAL -->` comment. Update dates, location, and cost when confirmed with Mike Dorfi.
-
-### Donations (Pending)
-`donate.html` exists but is **not linked** from the nav, footer, or homepage portal. It is a draft held in reserve until the donation method is finalized.
-
-Recommended next step: set up an [Open Collective](https://opencollective.com) account for the fellowship (free, handles tax transparency for group funds). Once ready:
-1. Open `donate.html` and find the `<!-- EDIT: PAYMENT LINKS -->` comment. Replace `href="#"` placeholders with the real links.
-2. Add a Donate link to `assets/partials/nav.html` and `assets/partials/footer.html`.
-3. Add a Donate portal tile back to `index.html`.
 
 ### Add to History
 Open `history.html`. The placeholder sections have `<!-- EDIT: HISTORY CONTENT -->` comments. Replace the italic placeholder text with real content from founding members.
