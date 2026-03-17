@@ -31,7 +31,6 @@ uumf/
 ├── handbook.html           ← Chants, songs, poems, norms & traditions
 ├── focus-groups.html       ← Small support groups (5–8 men)
 ├── connecting.html         ← How to join, Reciprocity Ring, FAQ, contacts
-├── donate.html             ← Potluck fund, members in need, activities fund
 ├── history.html            ← Organization history (placeholder — add content)
 │
 ├── assets/
@@ -60,7 +59,6 @@ uumf/
 | **Handbook** | `handbook.html` | Norms, 15 chants (modal), 7 songs (accordion), poems |
 | **Focus Groups** | `focus-groups.html` | What they are, how they work, how to join |
 | **Connect** | `connecting.html` | How to join, Reciprocity Ring, FAQ, contact info |
-| **Donate** | `donate.html` | Potluck fund, members in need, activities fund, payment links |
 | **History** | `history.html` | Placeholder — leadership to fill with founding story |
 
 ---
@@ -108,12 +106,6 @@ Open `about.html` and `connecting.html`. Find the `<!-- EDIT: LEADERSHIP CARDS -
 
 ### Update Renewal Weekend Details
 Open `renewals.html`. Each renewal has a `<!-- EDIT: SPRING/FALL RENEWAL -->` comment. Update dates, location, and cost when confirmed with Mike Dorfi.
-
-### Update Donation Links
-Open `donate.html`. Find the `<!-- EDIT: PAYMENT LINKS -->` comment. Replace the `href="#"` placeholders with:
-- PayPal.me link: `https://paypal.me/[your-handle]/25`
-- Venmo link: `https://venmo.com/[your-handle]`
-- Google Form link for designated giving
 
 ### Add to History
 Open `history.html`. The placeholder sections have `<!-- EDIT: HISTORY CONTENT -->` comments. Replace the italic placeholder text with real content from founding members.

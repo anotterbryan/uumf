@@ -1070,50 +1070,6 @@ table.recip td textarea:focus { border-bottom-color: var(--burnt); }
   margin-top: 4px;
 }
 
-/* ── DONATE ── */
-.donate-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-  margin-top: 48px;
-}
-
-.donate-card {
-  background: white;
-  border: 1px solid var(--parch-dk);
-  border-top: 4px solid var(--gold);
-  padding: 36px 28px;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.donate-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(193,68,14,0.1); }
-
-.donate-card-icon {
-  font-size: 2rem;
-  margin-bottom: 16px;
-  display: block;
-}
-
-.donate-card-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 12px;
-}
-
-.donate-card-desc {
-  font-size: 0.95rem;
-  color: var(--ink-lt);
-  line-height: 1.7;
-}
-
-.donate-actions {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-top: 48px;
-}
 
 /* ── FAQ ── */
 .faq-list {
