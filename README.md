@@ -109,11 +109,13 @@ Open `about.html` and `connecting.html`. Find the `<!-- EDIT: LEADERSHIP CARDS -
 ### Update Renewal Weekend Details
 Open `renewals.html`. Each renewal has a `<!-- EDIT: SPRING/FALL RENEWAL -->` comment. Update dates, location, and cost when confirmed with Mike Dorfi.
 
-### Update Donation Links
-Open `donate.html`. Find the `<!-- EDIT: PAYMENT LINKS -->` comment. Replace the `href="#"` placeholders with:
-- PayPal.me link: `https://paypal.me/[your-handle]/25`
-- Venmo link: `https://venmo.com/[your-handle]`
-- Google Form link for designated giving
+### Donations (Pending)
+`donate.html` exists but is **not linked** from the nav, footer, or homepage portal. It is a draft held in reserve until the donation method is finalized.
+
+Recommended next step: set up an [Open Collective](https://opencollective.com) account for the fellowship (free, handles tax transparency for group funds). Once ready:
+1. Open `donate.html` and find the `<!-- EDIT: PAYMENT LINKS -->` comment. Replace `href="#"` placeholders with the real links.
+2. Add a Donate link to `assets/partials/nav.html` and `assets/partials/footer.html`.
+3. Add a Donate portal tile back to `index.html`.
 
 ### Add to History
 Open `history.html`. The placeholder sections have `<!-- EDIT: HISTORY CONTENT -->` comments. Replace the italic placeholder text with real content from founding members.
