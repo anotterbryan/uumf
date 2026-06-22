@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UU Men's Fellowship — Member Guide &amp; Handbook · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1e1a14;--parch:#f5ecd7;--gold:#c4952a;--burnt:#c1440e;--ink-lt:#4a3f2e;--smoke:#ede8da;--parch-dk:#ddd0b5;}
+@page{size:5.5in 8.5in;margin:0;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Crimson Pro',Georgia,serif;font-size:10pt;line-height:1.65;color:var(--ink);background:#3a3530;}
+.print-tip{position:fixed;top:0;left:0;right:0;z-index:999;background:var(--ink);color:var(--parch);font-family:'Crimson Pro',serif;font-size:12px;padding:10px 16px;text-align:center;border-bottom:2px solid var(--gold);}
+.print-tip strong{color:var(--gold);}
+@media print{.print-tip{display:none!important;}body{background:white;}}
+.page{width:5.5in;min-height:8.5in;background:white;margin:60px auto 0;box-shadow:0 4px 24px rgba(0,0,0,0.4);overflow:hidden;page-break-after:always;}
+.page:first-of-type{margin-top:80px;}
+.cover,.back-cover{background:var(--ink);}
+.page-inner{padding:0.5in;}
+.cover-inner,.back-inner{padding:0.6in 0.65in;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:8.5in;}
+h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:700;line-height:1.2;}
+.lbl{font-family:'Bebas Neue',sans-serif;font-size:7pt;letter-spacing:0.22em;color:var(--burnt);text-transform:uppercase;margin-bottom:4pt;display:block;}
+.rule{width:40pt;height:1.5pt;background:var(--gold);margin:8pt 0 12pt;}
+.sec-head{margin:0 -0.5in;padding:14pt 0.5in 12pt;background:var(--burnt);color:white;margin-bottom:18pt;}
+.sec-head .lbl{color:rgba(255,255,255,0.7);}
+.sec-head h2{font-size:18pt;color:white;}
+h2{font-size:16pt;color:var(--ink);margin-bottom:6pt;}
+h2 em{font-style:italic;color:var(--burnt);}
+h3{font-size:12pt;color:var(--ink);margin-bottom:5pt;margin-top:12pt;}
+p{margin-bottom:7pt;font-size:10pt;line-height:1.65;color:var(--ink-lt);}
+.v-item{display:flex;gap:10pt;margin-bottom:10pt;page-break-inside:avoid;}
+.v-num{font-family:'Bebas Neue',sans-serif;font-size:15pt;color:var(--gold);min-width:20pt;line-height:1;padding-top:2pt;}
+.v-text strong{font-family:'Playfair Display',serif;font-size:10.5pt;display:block;margin-bottom:2pt;color:var(--ink);}
+.v-text p{margin-bottom:0;font-size:9.5pt;}
+.info{background:white;border:1px solid var(--parch-dk);border-left:3pt solid var(--gold);padding:9pt 11pt;margin-bottom:7pt;page-break-inside:avoid;}
+.info strong{font-family:'Playfair Display',serif;font-size:9.5pt;display:block;margin-bottom:3pt;color:var(--ink);}
+.info p{font-size:9pt;margin-bottom:0;}
+.info.burnt{border-left-color:var(--burnt);}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12pt;margin-top:10pt;}
+.meet-card{background:var(--smoke);padding:9pt;page-break-inside:avoid;}
+.meet-card h4{font-size:10pt;margin-bottom:4pt;color:var(--ink);}
+.meet-card p{font-size:9pt;margin-bottom:0;}
+.date-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5pt;margin-top:10pt;}
+.date-card{background:var(--smoke);padding:6pt;text-align:center;page-break-inside:avoid;}
+.date-card.sp{background:var(--parch-dk);border-top:2pt solid var(--gold);}
+.d-mon{font-family:'Bebas Neue',sans-serif;font-size:7pt;letter-spacing:0.1em;color:var(--burnt);}
+.d-day{font-family:'Playfair Display',serif;font-size:16pt;font-weight:700;color:var(--ink);line-height:1;}
+.d-note{font-size:7pt;color:var(--ink-lt);margin-top:2pt;}
+.faq-item{padding:7pt 0;border-bottom:1px solid var(--parch-dk);page-break-inside:avoid;}
+.faq-q{font-family:'Playfair Display',serif;font-size:10pt;font-weight:700;color:var(--ink);margin-bottom:2pt;}
+.faq-a{font-size:9.5pt;color:var(--ink-lt);line-height:1.6;}
+.chant-grid{display:grid;grid-template-columns:1fr 1fr;gap:8pt;margin-top:10pt;}
+.chant-box{border:1px solid var(--parch-dk);background:var(--smoke);padding:9pt;page-break-inside:avoid;}
+.ch-num{font-family:'Bebas Neue',sans-serif;font-size:7pt;letter-spacing:0.15em;color:var(--burnt);margin-bottom:2pt;}
+.ch-title{font-family:'Playfair Display',serif;font-size:10pt;font-weight:700;color:var(--ink);margin-bottom:5pt;}
+.ch-lyrics{font-size:8.5pt;color:var(--ink-lt);line-height:1.5;white-space:pre-line;}
+.ch-note{font-size:7.5pt;color:var(--burnt);font-style:italic;margin-top:4pt;line-height:1.4;}
+.song-item{margin-bottom:14pt;border-top:1px solid var(--parch-dk);padding-top:11pt;page-break-inside:avoid;}
+.song-item:first-child{border-top:none;padding-top:0;}
+.s-hymn{font-family:'Bebas Neue',sans-serif;font-size:7pt;letter-spacing:0.15em;color:var(--gold);margin-bottom:2pt;}
+.s-title{font-family:'Playfair Display',serif;font-size:12pt;font-weight:700;color:var(--ink);margin-bottom:1pt;}
+.s-author{font-size:8.5pt;color:var(--ink-lt);font-style:italic;margin-bottom:7pt;}
+.s-stanza{font-size:9.5pt;line-height:1.6;color:var(--ink-lt);margin-bottom:6pt;}
+.s-note{font-size:8pt;color:var(--burnt);font-style:italic;margin-top:4pt;}
+.poem-section{background:var(--ink);margin:0 -0.5in;padding:0.5in;}
+.p-subhead{margin-bottom:16pt;}
+.p-subhead .lbl{color:var(--gold);}
+.p-subhead em{display:block;color:rgba(245,236,215,0.5);font-style:italic;font-size:9pt;}
+.poem-item{margin-bottom:16pt;page-break-inside:avoid;}
+.p-title{font-family:'Playfair Display',serif;font-size:11pt;font-weight:700;color:var(--parch);margin-bottom:1pt;}
+.p-author{font-size:8pt;color:var(--gold);font-style:italic;margin-bottom:6pt;}
+.p-text{font-size:9pt;line-height:1.65;color:rgba(245,236,215,0.75);white-space:pre-line;}
+.hist-block{background:white;border-left:4pt solid var(--burnt);padding:11pt 13pt;margin-bottom:9pt;page-break-inside:avoid;}
+.hist-block.gold{border-left-color:var(--gold);}
+.h-lbl{font-family:'Bebas Neue',sans-serif;font-size:7pt;letter-spacing:0.2em;color:var(--burnt);margin-bottom:3pt;}
+.hist-block h3{font-size:11pt;margin-bottom:5pt;}
+.hist-block p{font-size:9pt;margin-bottom:4pt;}
+.hist-block p:last-child{margin-bottom:0;}
+.endures{background:rgba(193,68,14,0.06);border-left:4pt solid var(--burnt);padding:12pt;margin-top:14pt;}
+.leader-grid{display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin-top:10pt;}
+.leader{background:var(--smoke);border-bottom:2pt solid var(--gold);padding:9pt;}
+.l-role{font-family:'Bebas Neue',sans-serif;font-size:7pt;letter-spacing:0.15em;color:var(--burnt);}
+.l-name{font-family:'Playfair Display',serif;font-size:11pt;font-weight:700;color:var(--ink);margin:2pt 0;}
+.l-contact{font-size:8.5pt;color:var(--ink-lt);}
+.quote{border-left:3pt solid var(--gold);padding:7pt 11pt;margin:12pt 0;font-style:italic;font-size:10pt;color:var(--ink-lt);page-break-inside:avoid;}
+.toc-row{display:flex;justify-content:space-between;align-items:baseline;padding:4pt 0;border-bottom:1px dotted var(--parch-dk);}
+.toc-row:last-child{border-bottom:none;}
+.toc-title{font-weight:600;color:var(--ink);}
+.toc-detail{font-size:9pt;font-style:italic;color:var(--ink-lt);}
+</style>
+</head>
+<body>
+<div class="print-tip">
+  <strong>To print as booklet:</strong> File → Print → More settings → Pages per sheet: 2 → Two-sided (Short-edge binding) → Landscape → Save as PDF. Requires internet connection to load fonts and logo.
+</div>
+<!-- COVER -->
+<div class="page cover">
+  <div class="cover-inner">
+    <img src="https://www.firstuusandiego.org/uploads/1/2/7/6/127676152/published/chalice-drum-no-bkgrnd.png?1716058778" alt="UUMF" style="width:90pt;height:auto;margin-bottom:20pt;filter:brightness(0) invert(1);">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:8pt;letter-spacing:0.3em;color:var(--gold);margin-bottom:10pt;">First Unitarian Universalist Church of San Diego</div>
+    <div style="font-family:'Playfair Display',serif;font-size:30pt;font-weight:900;color:var(--parch);line-height:1.1;margin-bottom:6pt;">UU Men's<br><em style="color:var(--gold);">Fellowship</em></div>
+    <div style="font-family:'Playfair Display',serif;font-size:12pt;font-style:italic;color:rgba(245,236,215,0.6);margin-bottom:18pt;">Member Guide &amp; Handbook</div>
+    <div style="width:50pt;height:1.5pt;background:var(--gold);margin:0 auto 18pt;"></div>
+    <div style="font-family:'Crimson Pro',serif;font-size:9.5pt;font-style:italic;color:rgba(245,236,215,0.5);line-height:1.6;max-width:260pt;">A brotherhood rooted in compassion,<br>integrity, responsibility &amp; balance</div>
+    <div style="margin-top:auto;padding-top:32pt;font-family:'Bebas Neue',sans-serif;font-size:9pt;letter-spacing:0.25em;color:rgba(245,236,215,0.3);">2026</div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="page">
+  <div class="page-inner">
+    <span class="lbl">Contents</span>
+    <h2 style="margin-bottom:4pt;">Table of <em>Contents</em></h2>
+    <div class="rule"></div>
+    <div class="toc-row"><span class="toc-title">About the Fellowship</span><span class="toc-detail">Mission · Values · Leadership</span></div>
+    <div class="toc-row"><span class="toc-title">Monthly Gatherings</span><span class="toc-detail">Fourth Mondays · Banquet · Yule Log · 2026 Dates</span></div>
+    <div class="toc-row"><span class="toc-title">Renewal Weekends</span><span class="toc-detail">Spring &amp; Fall · What to Expect</span></div>
+    <div class="toc-row"><span class="toc-title">Focus Groups</span><span class="toc-detail">Deep community · How they work</span></div>
+    <div class="toc-row"><span class="toc-title">Connect &amp; Join</span><span class="toc-detail">How to join · FAQ · Contacts</span></div>
+    <div class="toc-row"><span class="toc-title">Handbook: Norms &amp; Traditions</span><span class="toc-detail">Six fellowship agreements</span></div>
+    <div class="toc-row"><span class="toc-title">Handbook: The Chants</span><span class="toc-detail">Fifteen chants with full lyrics</span></div>
+    <div class="toc-row"><span class="toc-title">Handbook: Songs &amp; Hymns</span><span class="toc-detail">Nine songs with full lyrics</span></div>
+    <div class="toc-row"><span class="toc-title">Handbook: Poems &amp; Readings</span><span class="toc-detail">Seven poems and readings</span></div>
+    <div class="toc-row"><span class="toc-title">Our History</span><span class="toc-detail">First UU SD · Camp de Benneville · What Endures</span></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">Who We Are</span><h2>About the <em>Fellowship</em></h2></div>
+    <span class="lbl">Mission</span>
+    <div class="rule"></div>
+    <p>Our mission is to support men in the quest for lives of compassion, integrity, responsibility, and balance.</p>
+    <p>Through mutually supportive work, our fellowship seeks to help men in their development as sons... Fathers... Brothers... Companions and members of society.</p>
+    <p>We are a caring, intentionally diverse brotherhood, committed to social justice and offering opportunities for intimate sharing, personal growth, and spiritual deepening.</p>
+    <p>You don't need to be a member of First UU San Diego, and you don't need to identify with any religion. You just need to be a man who wants deeper community.</p>
+    <h3 style="margin-top:14pt;">Core Values</h3>
+    <div class="rule"></div>
+    <div class="v-item"><div class="v-num">01</div><div class="v-text"><strong>Compassion</strong><p>For ourselves and those around us — without condition or reserve.</p></div></div>
+    <div class="v-item"><div class="v-num">02</div><div class="v-text"><strong>Integrity</strong><p>Showing up honestly in all our relationships, especially the hard ones.</p></div></div>
+    <div class="v-item"><div class="v-num">03</div><div class="v-text"><strong>Responsibility</strong><p>To our families, our communities, and the wider world we share.</p></div></div>
+    <div class="v-item"><div class="v-num">04</div><div class="v-text"><strong>Balance</strong><p>Nurturing our whole selves — mind, body, and spirit.</p></div></div>
+    <h3>How the Fellowship Works</h3>
+    <div class="rule"></div>
+    <p>The fellowship operates through three layers of community, each offering a different depth of engagement.</p>
+    <div class="two-col">
+      <div class="meet-card"><h4>Fourth Mondays</h4><p>Monthly gathering open to all men. Potluck 6pm, check-in and discussion 7–9pm. Most meetings on Zoom.</p></div>
+      <div class="meet-card"><h4>Renewal Weekends</h4><p>Three-day mountain retreats each Fall and Spring. Life-changing events — newcomers especially welcome.</p></div>
+      <div class="meet-card"><h4>Focus Groups</h4><p>Small groups of 5–8 men meeting regularly. Built on trust, confidentiality, and long-term commitment.</p></div>
+      <div class="meet-card"><h4>Steering Committee</h4><p>Guided by a consensus-model committee. All members welcome to participate in governance.</p></div>
+    </div>
+    <h3>Leadership</h3>
+    <div class="leader-grid">
+      <div class="leader"><div class="l-role">Co-Convener</div><div class="l-name">Jim Hurtado</div><div class="l-contact">Monthly meetings &amp; general info</div></div>
+      <div class="leader"><div class="l-role">Co-Convener</div><div class="l-name">Chris Guelich</div><div class="l-contact">Steering Committee &amp; direction</div></div>
+      <div class="leader"><div class="l-role">Renewals Contact</div><div class="l-name">Mike Dorfi</div><div class="l-contact">Fall &amp; Spring renewal weekends</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- GATHERINGS -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">Come as You Are</span><h2>Monthly <em>Gatherings</em></h2></div>
+    <span class="lbl">Fourth Mondays — The Evening</span>
+    <div class="rule"></div>
+    <div class="v-item"><div class="v-num" style="font-size:13pt;">6pm</div><div class="v-text"><strong>Potluck Dinner</strong><p>Bring a dish to share — or just come if it's your first time. No dish required for newcomers. Share food and connect informally.</p></div></div>
+    <div class="v-item"><div class="v-num" style="font-size:13pt;">7pm</div><div class="v-text"><strong>Circle Check-In</strong><p>Each man shares briefly how he's doing. No cross-talk, no advice. Just being heard.</p></div></div>
+    <div class="v-item"><div class="v-num" style="font-size:11pt;">7:30</div><div class="v-text"><strong>Discussion</strong><p>A topic relevant to men's lives — past topics include fatherhood, grief, friendship, identity, and purpose.</p></div></div>
+    <div class="v-item"><div class="v-num" style="font-size:13pt;">9pm</div><div class="v-text"><strong>Closing</strong><p>We close with a chant or song. The circle ends; men linger to connect informally.</p></div></div>
+    <div class="two-col" style="margin-top:12pt;">
+      <div class="info"><strong>Where</strong><p>Common Room, Hillcrest Campus<br>First Unitarian Universalist Church of San Diego</p></div>
+      <div class="info"><strong>Zoom</strong><p>Most meetings available on Zoom. Contact a co-convener for the link.</p></div>
+      <div class="info"><strong>First Time?</strong><p>Just show up. Arrive at 6pm for dinner or 7pm for discussion. You'll be welcomed.</p></div>
+      <div class="info"><strong>Religious?</strong><p>No requirement. UUMF draws from UU principles — inclusive, non-creedal, spiritually open.</p></div>
+    </div>
+    <h3>Annual Celebrations</h3>
+    <div class="rule"></div>
+    <div class="two-col">
+      <div class="meet-card"><h4>February Banquet</h4><p>Annual catered banquet — a highlight of the year. Great event to bring someone new. Replaces the February Fourth Monday.</p></div>
+      <div class="meet-card"><h4>Yule Log Ceremony</h4><p>Holiday season tradition. Reflection, ritual, and brotherhood. Men bring something symbolic to release into the fire. Typically the December Fourth Monday.</p></div>
+    </div>
+    <h3>2026 Dates</h3>
+    <div class="rule"></div>
+    <p style="font-size:9pt;">Potluck 6pm · Discussion 7–9pm · Hillcrest Campus, Common Room</p>
+    <div class="date-grid">
+      <div class="date-card"><div class="d-mon">January</div><div class="d-day">26</div><div class="d-note">Fourth Monday</div></div>
+      <div class="date-card sp"><div class="d-mon">February</div><div class="d-day">23</div><div class="d-note">Annual Banquet</div></div>
+      <div class="date-card"><div class="d-mon">March</div><div class="d-day">23</div><div class="d-note">Fourth Monday</div></div>
+      <div class="date-card"><div class="d-mon">April</div><div class="d-day">27</div><div class="d-note">Fourth Monday</div></div>
+      <div class="date-card"><div class="d-mon">May</div><div class="d-day">25</div><div class="d-note">Fourth Monday</div></div>
+      <div class="date-card"><div class="d-mon">June</div><div class="d-day">22</div><div class="d-note">Fourth Monday</div></div>
+      <div class="date-card"><div class="d-mon">July</div><div class="d-day">27</div><div class="d-note">Fourth Monday</div></div>
+      <div class="date-card"><div class="d-mon">August</div><div class="d-day">24</div><div class="d-note">Fourth Monday</div></div>
+      <div class="date-card"><div class="d-mon">September</div><div class="d-day">28</div><div class="d-note">Fourth Monday</div></div>
+      <div class="date-card"><div class="d-mon">October</div><div class="d-day">26</div><div class="d-note">Fourth Monday</div></div>
+      <div class="date-card sp"><div class="d-mon">November</div><div class="d-day">23</div><div class="d-note">Fall Renewal TBD</div></div>
+      <div class="date-card sp"><div class="d-mon">December</div><div class="d-day">28</div><div class="d-note">Yule Log</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- RENEWALS -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">Into the Mountains</span><h2>Renewal <em>Weekends</em></h2></div>
+    <p>Three days away from ordinary life. Time to go deeper — with yourself and with the men around you. Newcomers especially welcome.</p>
+    <h3>Spring Renewal</h3>
+    <div class="rule"></div>
+    <p>Our smaller, more intimate spring gathering. Held in the San Bernardino National Forest — a close-knit weekend for the San Diego men's community.</p>
+    <div class="two-col">
+      <div class="info burnt"><strong>Location</strong><p>Camp de Benneville Pines<br>Angelus Oaks, CA · San Bernardino National Forest<br>~90 miles east of Los Angeles, 6,800 ft elevation</p></div>
+      <div class="info burnt"><strong>When</strong><p>Spring 2026 — date to be announced. Check with Mike Dorfi or at the Fourth Monday meeting.</p></div>
+      <div class="info burnt"><strong>Cost</strong><p>Modest cost to cover lodging and meals. Scholarships may be available — ask Mike Dorfi.</p></div>
+      <div class="info burnt"><strong>Who</strong><p>Open to all men in the San Diego fellowship. First-time attendees warmly welcomed.</p></div>
+    </div>
+    <h3>Fall Renewal</h3>
+    <div class="rule"></div>
+    <p>The larger of our two annual renewals — a gathering of men's groups from UU churches across Southern California. Three days at Camp Stevens in Julian.</p>
+    <div class="two-col">
+      <div class="info"><strong>Location</strong><p>Camp Stevens · Julian, California</p></div>
+      <div class="info"><strong>When</strong><p>Fall 2026 — date TBD. Typically Friday evening through Sunday afternoon.</p></div>
+      <div class="info"><strong>Cost</strong><p>Covers lodging, all meals, and programming. Contact Mike Dorfi for pricing.</p></div>
+      <div class="info"><strong>Who</strong><p>Open to men from all participating UU men's groups across Southern California.</p></div>
+    </div>
+    <h3>What to Expect</h3>
+    <div class="rule"></div>
+    <div class="v-item"><div class="v-num">1</div><div class="v-text"><strong>You Don't Need to Know Anyone</strong><p>Many men arrive not knowing what to expect and leave with some of the most meaningful connections of their lives.</p></div></div>
+    <div class="v-item"><div class="v-num">2</div><div class="v-text"><strong>No Performance Required</strong><p>You don't need to be eloquent or spiritually advanced. Just be willing to be present.</p></div></div>
+    <div class="v-item"><div class="v-num">3</div><div class="v-text"><strong>Bring Comfortable Clothes</strong><p>Camp setting — layers, walking shoes. Meals are provided. The structure is loose enough to breathe.</p></div></div>
+    <div class="v-item"><div class="v-num">4</div><div class="v-text"><strong>It's Okay to Feel Moved</strong><p>Men cry at renewals. Men laugh deeply. Men say things they've never said aloud. That's what the space is for.</p></div></div>
+    <p style="margin-top:10pt;"><strong>Renewals Contact:</strong> Mike Dorfi — reach him at any Fourth Monday gathering.</p>
+  </div>
+</div>
+
+<!-- FOCUS GROUPS -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">Deep Community</span><h2>Focus <em>Groups</em></h2></div>
+    <p>Focus groups are the heart of long-term community in the fellowship. While the Fourth Monday meetings are the broad circle — welcoming to all, open and varied — focus groups are where the deepest work happens.</p>
+    <p>Each group meets regularly at times set by the members themselves, at homes or on Zoom. Five to eight men. No agenda beyond showing up honestly.</p>
+    <p>Many men join UUMF for the monthly meetings and stay for the focus groups. The depth of relationship that develops over months and years of consistent sharing is unlike most friendships men have access to in everyday life.</p>
+    <div class="two-col" style="margin-top:12pt;">
+      <div class="v-item"><div class="v-num">01</div><div class="v-text"><strong>Small &amp; Intimate</strong><p>Five to eight men. Every voice heard.</p></div></div>
+      <div class="v-item"><div class="v-num">02</div><div class="v-text"><strong>Confidential</strong><p>What is shared stays in the group.</p></div></div>
+      <div class="v-item"><div class="v-num">03</div><div class="v-text"><strong>Long-Term</strong><p>Groups meet over months and years. Depth comes from continuity.</p></div></div>
+      <div class="v-item"><div class="v-num">04</div><div class="v-text"><strong>Member-Led</strong><p>Groups set their own schedule and format. No external agenda.</p></div></div>
+    </div>
+    <h3>A Typical Meeting</h3>
+    <div class="rule"></div>
+    <div class="two-col">
+      <div class="meet-card"><h4>Opening</h4><p>A chant, silence, or centering. Something that marks the transition into the group's space.</p></div>
+      <div class="meet-card"><h4>Check-In</h4><p>Each man shares what's alive for him. No cross-talk. Just presence and listening.</p></div>
+      <div class="meet-card" style="grid-column:1/-1;"><h4>Deeper Work</h4><p>One or more men go deeper on something from check-in. The group listens and supports — without fixing, advising, or judging.</p></div>
+    </div>
+    <h3>Joining a Focus Group</h3>
+    <div class="rule"></div>
+    <p>Interest begins at the Fourth Monday meeting. Any Steering Committee member can connect you with the Focus Group Coordinator, who matches men to open groups based on availability and fit.</p>
+    <div class="quote">"I joined the fellowship for the monthly meetings. I stayed because of my focus group. These are the men who know me most — who've been there through the hardest years and the best ones."<br><span style="font-family:'Bebas Neue',sans-serif;font-size:7.5pt;letter-spacing:0.1em;color:var(--burnt);font-style:normal;">— A UUMF member</span></div>
+  </div>
+</div>
+
+<!-- CONNECT -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">You're Welcome Here</span><h2>Connect &amp; <em>Join</em></h2></div>
+    <p>There's no application, no dues, no membership requirement. Joining is as simple as showing up to a Fourth Monday gathering.</p>
+    <div class="v-item"><div class="v-num">01</div><div class="v-text"><strong>Show Up to a Fourth Monday</strong><p>Open to all men. Potluck 6pm at the Common Room, Hillcrest Campus, First UU San Diego. Come at 7pm for discussion if you'd rather skip the food your first time.</p></div></div>
+    <div class="v-item"><div class="v-num">02</div><div class="v-text"><strong>Introduce Yourself</strong><p>At the start of the meeting there's a check-in round. New faces are always welcomed. Say as much or as little as you'd like.</p></div></div>
+    <div class="v-item"><div class="v-num">03</div><div class="v-text"><strong>Get on the Mailing List</strong><p>Ask a co-convener to add you. You'll receive monthly reminders about meeting dates, special events, and renewals.</p></div></div>
+    <div class="v-item"><div class="v-num">04</div><div class="v-text"><strong>Keep Coming Back</strong><p>Community builds through consistency. There's no formal membership — belonging is earned through presence.</p></div></div>
+    <h3>The Reciprocity Ring</h3>
+    <div class="rule"></div>
+    <p>A shared Google Sheet where members list what they need and what they can offer — help with a home project, a skill to share, a resource to lend. A living ledger of brotherhood in action.</p>
+    <p style="font-size:9pt;font-style:italic;">Columns: Name · I Need Help With · Contact · I Can Offer · Volunteer Contact</p>
+    <h3>FAQ</h3>
+    <div class="rule"></div>
+    <div class="faq-item"><div class="faq-q">Is this a religious group?</div><div class="faq-a">No religious affiliation required. UUMF is rooted in UU principles — inclusive, non-creedal, spiritually open. Men of any faith background (or none) are welcome.</div></div>
+    <div class="faq-item"><div class="faq-q">Do I need to be a member of First UU San Diego?</div><div class="faq-a">No. You don't need to be a church member or have any affiliation with First UU San Diego.</div></div>
+    <div class="faq-item"><div class="faq-q">Is there a cost to attend?</div><div class="faq-a">Fourth Monday meetings are free. No dues or membership fee. Renewal weekends have a modest cost — financial support may be available.</div></div>
+    <div class="faq-item"><div class="faq-q">Can I attend on Zoom?</div><div class="faq-a">Yes. Most Fourth Monday meetings are available via Zoom. Contact a co-convener for the link.</div></div>
+    <div class="faq-item"><div class="faq-q">What do I bring to my first meeting?</div><div class="faq-a">Just yourself. A dish for the potluck is appreciated but never expected for first-timers.</div></div>
+    <div class="faq-item"><div class="faq-q">What are focus groups?</div><div class="faq-a">Small, ongoing groups of 5–8 men meeting regularly for deeper sharing and support. Interest begins at a Fourth Monday.</div></div>
+    <h3>Contacts</h3>
+    <div class="leader-grid">
+      <div class="leader"><div class="l-role">Co-Convener</div><div class="l-name">Jim Hurtado</div><div class="l-contact">Monthly meetings · Zoom links · Mailing list</div></div>
+      <div class="leader"><div class="l-role">Co-Convener</div><div class="l-name">Chris Guelich</div><div class="l-contact">Steering Committee · New member questions</div></div>
+      <div class="leader"><div class="l-role">Renewals Contact</div><div class="l-name">Mike Dorfi</div><div class="l-contact">Fall &amp; Spring renewal weekends</div></div>
+    </div>
+    <p style="margin-top:10pt;font-size:9pt;font-style:italic;color:var(--ink-lt);">Best way to reach any Steering Committee member: attend a Fourth Monday gathering.</p>
+  </div>
+</div>
+
+<!-- NORMS -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">The Handbook — How We Be Together</span><h2>Norms &amp; <em>Traditions</em></h2></div>
+    <p>These are the agreements and practices that make the fellowship a safe and meaningful space. They are not rules — they are invitations.</p>
+    <div style="margin-top:14pt;">
+      <div class="v-item"><div class="v-num">01</div><div class="v-text"><strong>Confidentiality</strong><p>What is shared in the circle stays in the circle. Men speak freely because trust is the ground we stand on.</p></div></div>
+      <div class="v-item"><div class="v-num">02</div><div class="v-text"><strong>No Cross-Talk During Check-In</strong><p>When a man is checking in, we listen without comment, advice, or response. He speaks; we receive. There is time for dialogue in the discussion that follows.</p></div></div>
+      <div class="v-item"><div class="v-num">03</div><div class="v-text"><strong>Speak from Your Own Experience</strong><p>Use "I" statements. We share our own stories, not prescriptions for others. "I feel..." not "You should..."</p></div></div>
+      <div class="v-item"><div class="v-num">04</div><div class="v-text"><strong>Step Up, Step Back</strong><p>If you tend toward silence, step into the circle more. If you tend to fill space, leave room for others. We take care of the whole group's voice.</p></div></div>
+      <div class="v-item"><div class="v-num">05</div><div class="v-text"><strong>Chants Are Sung Together</strong><p>Chants are sung three times — the first time robust, the second louder, the third quieter or hummed. Tune out your inner critic and just sing.</p></div></div>
+      <div class="v-item"><div class="v-num">06</div><div class="v-text"><strong>The Potluck Is Part of the Gathering</strong><p>Breaking bread together is the first act of fellowship. Come early enough to share the meal. First-timers are never expected to bring food.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHANTS -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">The Handbook — Oral Tradition</span><h2>The <em>Chants</em></h2></div>
+    <p>Chants are sung three times — robust, louder, then quieter or hummed. The leader often steps up volume on key phrases.</p>
+    <div id="chantsBooklet" class="chant-grid"></div>
+  </div>
+</div>
+
+<!-- SONGS -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">The Handbook — Songs &amp; Hymns</span><h2>Music of the <em>Fellowship</em></h2></div>
+    <div id="songsBooklet"></div>
+  </div>
+</div>
+
+<!-- POEMS -->
+<div class="page" style="background:var(--ink);">
+  <div class="page-inner">
+    <div class="sec-head" style="background:rgba(255,255,255,0.08);"><span class="lbl" style="color:rgba(255,255,255,0.6);">The Handbook — Words That Hold Us</span><h2 style="color:var(--parch);">Poems &amp; <em style="color:var(--gold);">Readings</em></h2></div>
+    <div id="poemsBooklet"></div>
+  </div>
+</div>
+
+<!-- HISTORY -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">Where We Came From</span><h2>Our <em>History</em></h2></div>
+    <div class="hist-block gold">
+      <div class="h-lbl">Roots</div>
+      <h3>Our Home: First UU San Diego</h3>
+      <p>The UUMF meets at First Unitarian Universalist Church of San Diego — one of the oldest congregations in the city. Unitarians first gathered here in 1873, when a small Sunday School met at Horton Hall on June 22 of that year. By 1877, the group had grown and formally organized as The Unitarian Society of San Diego.</p>
+      <p>The Hillcrest Campus — where the UUMF holds its Fourth Monday gatherings in the Common Room — was built in 1959. The church has been a center for liberal religion, free thought, and social justice in San Diego for over 150 years.</p>
+      <p>One of the church's founding members, Alonzo Erasmus Horton — the developer whose name still marks a neighborhood downtown — was among San Diego's early Unitarians.</p>
+    </div>
+    <div class="hist-block">
+      <div class="h-lbl">The Mountains</div>
+      <h3>Camp de Benneville Pines</h3>
+      <p>The UUMF's Spring Renewal takes place at Camp de Benneville Pines, a UU camp in the San Bernardino National Forest above Angelus Oaks — at 6,800 feet elevation, surrounded by pine, cedar, and oak.</p>
+      <p>The camp was founded in 1961, purchased by UU congregations from San Diego to Santa Monica to Arizona pooling their resources. It serves over 60 groups a year and has been the setting for some of the most significant weekends in men's lives.</p>
+    </div>
+    <div class="hist-block gold">
+      <div class="h-lbl">Broader Movement</div>
+      <h3>The Southern California UU Men's Network</h3>
+      <p>UUMF is one of several UU men's fellowships in Southern California. The Fall Renewal near Julian brings these groups together for a multi-congregation gathering — men from San Diego to other UU churches across the region spending three days in the mountains together.</p>
+    </div>
+    <div class="endures">
+      <h3 style="font-size:11pt;margin-bottom:6pt;color:var(--burnt);">What Has Endured</h3>
+      <p style="font-size:9.5pt;">Whatever year the fellowship began, certain things have remained constant: a circle of men showing up for each other, month after month. A table with food on it. A check-in round where every voice is heard. Chants sung together. The mountains, twice a year.</p>
+      <p style="font-size:9.5pt;">The history is not only in the past. Every man who walks through the door for the first time is adding to it.</p>
+    </div>
+  </div>
+</div>
+
+<!-- BACK COVER -->
+<div class="page back-cover">
+  <div class="back-inner">
+    <img src="https://www.firstuusandiego.org/uploads/1/2/7/6/127676152/published/chalice-drum-no-bkgrnd.png?1716058778" alt="UUMF" style="width:50pt;height:auto;margin-bottom:16pt;filter:brightness(0) invert(1);opacity:0.6;">
+    <div style="font-family:'Playfair Display',serif;font-size:11pt;font-style:italic;color:rgba(245,236,215,0.5);line-height:1.7;max-width:270pt;margin-bottom:20pt;">"Our mission is to support men in the quest for lives of compassion, integrity, responsibility, and balance."</div>
+    <div style="width:40pt;height:1pt;background:var(--gold);margin:0 auto 20pt;"></div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:8pt;letter-spacing:0.2em;color:rgba(245,236,215,0.4);margin-bottom:4pt;">UU Men's Fellowship</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:7.5pt;letter-spacing:0.15em;color:rgba(245,236,215,0.3);margin-bottom:16pt;">First Unitarian Universalist Church of San Diego<br>Hillcrest Campus · San Diego, CA</div>
+    <div style="font-family:'Crimson Pro',serif;font-size:9pt;color:rgba(245,236,215,0.35);font-style:italic;margin-bottom:4pt;">All men welcome. No church membership required.</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:7pt;letter-spacing:0.15em;color:rgba(245,236,215,0.25);margin-top:auto;padding-top:24pt;">firstuusandiego.org · 2026</div>
+  </div>
+</div>
+<script src="assets/js/chants-data.js"></script>
+<script src="assets/js/songs-data.js"></script>
+<script src="assets/js/poems-data.js"></script>
+<script>
+// Render chants in booklet
+const cb = document.getElementById('chantsBooklet');
+if (cb && typeof chants !== 'undefined') {
+  chants.forEach(c => {
+    const d = document.createElement('div');
+    d.className = 'chant-box';
+    d.innerHTML = `<div class="ch-num">Chant ${String(c.num).padStart(2,'0')}</div><div class="ch-title">${c.title}</div><div class="ch-lyrics">${c.lyrics}</div>${c.note ? `<div class="ch-note">${c.note}</div>` : ''}`;
+    cb.appendChild(d);
+  });
+}
+
+// Render songs in booklet
+const sb = document.getElementById('songsBooklet');
+if (sb && typeof songs !== 'undefined') {
+  songs.forEach(s => {
+    const d = document.createElement('div');
+    d.className = 'song-item';
+    const stanzaHtml = s.stanzas.map(st => {
+      const lines = st.split('\n');
+      const isLabel = lines[0].match(/^(Verse \d+:|En Español:)/i);
+      if (isLabel) return `<div class="s-stanza"><em>${lines[0]}</em><br>${lines.slice(1).join('<br>')}</div>`;
+      return `<div class="s-stanza">${lines.join('<br>')}</div>`;
+    }).join('');
+    d.innerHTML = `<div class="s-hymn">${s.hymnNum}</div><div class="s-title">${s.title}</div><div class="s-author">${s.author}</div>${stanzaHtml}${s.note ? `<div class="s-note">${s.note}</div>` : ''}`;
+    sb.appendChild(d);
+  });
+}
+
+// Render poems in booklet
+const pb = document.getElementById('poemsBooklet');
+if (pb && typeof poems !== 'undefined') {
+  const subh = document.createElement('div');
+  subh.className = 'p-subhead';
+  subh.innerHTML = `<span class="lbl">Transcending Mystery and Wonder</span><em>The Celebration of Life</em>`;
+  poems.forEach((p, i) => {
+    if (i === 1) pb.appendChild(subh);
+    const d = document.createElement('div');
+    d.className = 'poem-item';
+    const authorLine = [p.author, p.context].filter(Boolean).join(' · ');
+    d.innerHTML = `<div class="p-title">${p.title}</div><div class="p-author">${authorLine}</div><div class="p-text">${p.text}</div>`;
+    pb.appendChild(d);
+  });
+}
+</script>
+</body>
+</html>
