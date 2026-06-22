@@ -1,6 +1,31 @@
 // ── SHARED COMPONENTS ── UUMF Website
 // Loaded on every page via <script src="assets/js/components.js"></script>
 
+// ── AUTO-POPULATE NEXT FOURTH MONDAY ──
+function nextFourthMonday() {
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  function getFourthMonday(y, m) {
+    const first = new Date(y, m, 1);
+    const firstMon = 1 + (8 - first.getDay()) % 7;
+    return new Date(y, m, firstMon + 21);
+  }
+  const today = new Date();
+  const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  let y = today.getFullYear(), m = today.getMonth();
+  let fourth = getFourthMonday(y, m);
+  if (fourth < todayMidnight) {
+    m++; if (m > 11) { m = 0; y++; }
+    fourth = getFourthMonday(y, m);
+  }
+  return `Monday, ${MONTHS[fourth.getMonth()]} ${fourth.getDate()}`;
+}
+
+// Call on pages that have a .next-gathering-date element
+document.addEventListener('DOMContentLoaded', () => {
+  const el = document.querySelector('.next-gathering-date');
+  if (el) el.textContent = nextFourthMonday();
+});
+
 // ── NAV TOGGLE + ACTIVE LINK ──
 function initNav() {
   const toggle = document.getElementById('navToggle');
