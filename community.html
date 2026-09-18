@@ -317,7 +317,8 @@ document.getElementById('joinEmailBtn').addEventListener('click', async () => {
     if (error) throw error;
     showMsg(msgEl, 'Check your email for a sign-in link.', 'success');
   } catch (e) {
-    showMsg(msgEl, GENERIC_ERROR, 'error');
+    console.error('[UUMF sign-in]', e);
+    showMsg(msgEl, GENERIC_ERROR + ' (' + (e.message || e.error_description || 'unknown error') + ')', 'error');
   } finally {
     btn.disabled = false;
     btn.textContent = 'Send Magic Link';
@@ -372,7 +373,8 @@ document.getElementById('profileSubmitBtn').addEventListener('click', async () =
     showMsg(msgEl, 'Profile saved! Welcome to the fellowship.', 'success');
     await refreshAuthAndRender();
   } catch (e) {
-    showMsg(msgEl, GENERIC_ERROR, 'error');
+    console.error('[UUMF save profile]', e);
+    showMsg(msgEl, GENERIC_ERROR + ' (' + (e.message || e.error_description || e.statusText || 'unknown error') + ')', 'error');
   } finally {
     btn.disabled = false;
     btn.textContent = 'Save Profile';
@@ -602,7 +604,8 @@ async function submitPost() {
     hideMsg(msgEl);
     await loadFeed();
   } catch (e) {
-    showMsg(msgEl, GENERIC_ERROR, 'error');
+    console.error('[UUMF submit post]', e);
+    showMsg(msgEl, GENERIC_ERROR + ' (' + (e.message || e.error_description || e.statusText || 'unknown error') + ')', 'error');
   } finally {
     btn.disabled = false;
     btn.textContent = 'Post';
