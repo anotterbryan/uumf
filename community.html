@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The UUMF Community — a shared feed for the fellowship. Post updates, share photos, and connect with fellow members.">
+<title>Community — UU Men's Fellowship</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- PAGE HERO -->
+<section style="background:var(--ink); padding:120px 24px 80px; text-align:center;">
+  <div class="container">
+    <span class="section-label" style="color:var(--gold);">Between Gatherings</span>
+    <h1 class="section-title" style="color:var(--parch); font-size:clamp(2.5rem,6vw,4rem);">The <em style="color:var(--burnt-lt);">Community</em></h1>
+    <div class="gold-rule" style="margin:24px auto;"></div>
+    <p class="section-body" style="color:rgba(245,236,215,0.7); margin:0 auto;">A shared feed for the fellowship — post updates, share photos, celebrate one another, and stay connected between meetings. Open for anyone to read; members can post, comment, and react.</p>
+    <div id="joinCta" style="margin-top:32px;">
+      <button class="btn-primary" id="joinBtn">Join the Community</button>
+    </div>
+    <div id="memberBadge" style="display:none; margin-top:24px; color:var(--gold); font-family:'Bebas Neue',sans-serif; letter-spacing:0.1em; font-size:0.9rem;">
+      Signed in as <span id="memberBadgeName"></span> &nbsp;·&nbsp;
+      <a href="#" id="signOutLink" style="color:var(--parch); opacity:0.6; text-decoration:underline;">sign out</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMPOSER + FEED -->
+<section id="feed" style="background:var(--parch);">
+  <div class="container" style="max-width:760px;">
+    <div class="reveal">
+      <span class="section-label">The Feed</span>
+      <h2 class="section-title">Fellowship <em>Updates</em></h2>
+      <div class="gold-rule"></div>
+    </div>
+
+    <div class="composer-card reveal">
+      <textarea id="composerBody" placeholder="Share something with the fellowship..."></textarea>
+      <div class="composer-actions">
+        <input type="file" id="composerPhoto" accept="image/*">
+        <button class="btn-primary" id="composerSubmit">Post</button>
+      </div>
+      <div id="composerMsg" class="jm-msg" style="display:none;"></div>
+    </div>
+
+    <div id="feedList">
+      <p class="loading-text">Loading the feed...</p>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBER DIRECTORY -->
+<section id="directory" style="background:var(--smoke);">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Who's Here</span>
+      <h2 class="section-title">Fellowship <em>Members</em></h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div id="directoryContent" style="margin-top:40px;">
+      <p class="loading-text">Loading...</p>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN / PROFILE MODAL -->
+<div class="chant-modal" id="joinModal">
+  <div class="chant-modal-inner" style="max-width:480px; text-align:center;">
+    <button class="modal-close" id="joinModalClose">✕</button>
+
+    <!-- Step 1: email / magic link -->
+    <div id="joinLoginView">
+      <div class="modal-num">Join The Fellowship</div>
+      <div class="modal-title" style="border-bottom:none; margin-bottom:8px;">Sign In</div>
+      <p style="color:var(--ink-lt); font-size:0.95rem; margin-bottom:20px;">Enter your email and we'll send you a magic link — no password needed.</p>
+      <div class="jm-field">
+        <label>Email</label>
+        <input type="email" id="joinEmailInput" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <button class="btn-primary" id="joinEmailBtn" style="width:100%;">Send Magic Link</button>
+      <div id="joinLoginMsg" class="jm-msg" style="display:none;"></div>
+    </div>
+
+    <!-- Step 2: complete profile -->
+    <div id="joinProfileView" style="display:none;">
+      <div class="modal-num">One More Step</div>
+      <div class="modal-title" style="border-bottom:none; margin-bottom:8px;">Complete Your Profile</div>
+      <p style="color:var(--ink-lt); font-size:0.95rem; margin-bottom:20px;">This is how you'll appear to fellow members in posts, comments, and the directory.</p>
+      <div class="jm-field">
+        <label>Display Name *</label>
+        <input type="text" id="profileNameInput" placeholder="Your name">
+      </div>
+      <div class="jm-field">
+        <label>Bio</label>
+        <textarea id="profileBioInput" rows="3" placeholder="A little about you (optional)"></textarea>
+      </div>
+      <div class="jm-field">
+        <label>Phone</label>
+        <input type="text" id="profilePhoneInput" placeholder="Optional">
+        <small>Shared with fellow members only — never public.</small>
+      </div>
+      <div class="jm-field">
+        <label>Avatar Photo</label>
+        <input type="file" id="profileAvatarInput" accept="image/*">
+      </div>
+      <button class="btn-primary" id="profileSubmitBtn" style="width:100%;">Save Profile</button>
+      <div id="profileMsg" class="jm-msg" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script src="assets/js/components.js"></script>
+<script>
+// ── SUPABASE SETUP ──
+const SUPABASE_URL = 'https://yakruydfgqasgrcsfiin.supabase.co';
+const SUPABASE_KEY = 'sb_publishable__UZnmbwG3HhRHtix1lXy8g_cK8rkLg2';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ── REACTION ICONS ──
+const REACTION_TYPES = ['drum', 'chalice', 'campfire', 'thumbs_up'];
+const REACTION_LABELS = { drum: 'Drum', chalice: 'Chalice', campfire: 'Campfire', thumbs_up: 'Thumbs Up' };
+const REACTION_ICONS = {
+  drum: `<svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6 L6.5 18 Q12 21 17.5 18 L19 6"/><path d="M6.5 18 Q12 21 17.5 18" stroke-dasharray="2 2"/></svg>`,
+  chalice: `<svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10 C10 7 13 5 12 2 C11 5 14 7 12 10 Z"/><path d="M6 10 C6 14 8.5 16 12 16 C15.5 16 18 14 18 10"/><line x1="12" y1="16" x2="12" y2="20"/><line x1="8" y1="20" x2="16" y2="20"/></svg>`,
+  campfire: `<svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 C10 8 8 9 9 13 C9.8 15 11 15.5 12 15.5 C13 15.5 14.2 15 15 13 C16 9 14 8 12 4 Z"/><line x1="4" y1="19" x2="14" y2="15"/><line x1="20" y1="19" x2="10" y2="15"/></svg>`,
+  thumbs_up: `<svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v9H4v-9h3z"/><path d="M7 11l3.5-7c1 0 2 1 2 2.2V9h5.3c1 0 1.7 1 1.4 2l-1.6 7c-.2.9-1 1.5-1.9 1.5H7"/></svg>`
+};
+
+// ── STATE ──
+let currentSession = null;
+let currentProfile = null;   // row from `profiles` for the signed-in user, or null
+let pendingAction = null;    // callback to run once auth+profile are ready
+let feedPosts = [];
+let feedAuthors = {};        // id -> public_profiles row
+let feedReactions = {};      // post_id -> [{profile_id, emoji}]
+let feedComments = {};       // post_id -> [{...comment, author}]
+
+// ── HELPERS ──
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function initials(name) {
+  if (!name) return '?';
+  return name.trim().split(/\s+/).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+}
+
+function avatarHtml(author, size) {
+  const name = author && author.display_name ? author.display_name : 'Member';
+  if (author && author.avatar_url) {
+    return `<div class="avatar-circle"><img src="${escapeHtml(author.avatar_url)}" alt="${escapeHtml(name)}"></div>`;
+  }
+  return `<div class="avatar-circle">${escapeHtml(initials(name))}</div>`;
+}
+
+function timeAgo(iso) {
+  const d = new Date(iso);
+  const diffMs = Date.now() - d.getTime();
+  const mins = Math.floor(diffMs / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return mins + 'm ago';
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return hrs + 'h ago';
+  const days = Math.floor(hrs / 24);
+  if (days < 7) return days + 'd ago';
+  return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function showMsg(el, text, type) {
+  el.textContent = text;
+  el.className = 'jm-msg ' + (type || 'success');
+  el.style.display = 'block';
+}
+
+function hideMsg(el) { el.style.display = 'none'; }
+
+const GENERIC_ERROR = 'Something went wrong — please try again.';
+
+// ── MODAL CONTROL ──
+const joinModal      = document.getElementById('joinModal');
+const joinLoginView   = document.getElementById('joinLoginView');
+const joinProfileView = document.getElementById('joinProfileView');
+
+function openJoinModal(view) {
+  joinLoginView.style.display   = view === 'profile' ? 'none' : 'block';
+  joinProfileView.style.display = view === 'profile' ? 'block' : 'none';
+  hideMsg(document.getElementById('joinLoginMsg'));
+  hideMsg(document.getElementById('profileMsg'));
+  joinModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeJoinModal() {
+  joinModal.classList.remove('open');
+  document.body.style.overflow = '';
+  pendingAction = null;
+}
+
+document.getElementById('joinModalClose').addEventListener('click', closeJoinModal);
+joinModal.addEventListener('click', e => { if (e.target === joinModal) closeJoinModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && joinModal.classList.contains('open')) closeJoinModal(); });
+
+document.getElementById('joinBtn').addEventListener('click', () => openJoinModal('login'));
+
+// ── GATING: run `action` only once a session + completed profile exist ──
+function requireMember(action) {
+  if (!currentSession) {
+    pendingAction = action;
+    openJoinModal('login');
+    return;
+  }
+  if (!currentProfile) {
+    pendingAction = action;
+    openJoinModal('profile');
+    return;
+  }
+  action();
+}
+
+// ── AUTH STATE ──
+function updateAuthUI() {
+  const joinCta     = document.getElementById('joinCta');
+  const memberBadge = document.getElementById('memberBadge');
+  if (currentSession && currentProfile) {
+    joinCta.style.display = 'none';
+    memberBadge.style.display = 'block';
+    document.getElementById('memberBadgeName').textContent = currentProfile.display_name;
+  } else {
+    joinCta.style.display = 'block';
+    memberBadge.style.display = 'none';
+  }
+}
+
+async function checkProfile() {
+  if (!currentSession) { currentProfile = null; return; }
+  try {
+    const { data, error } = await sb
+      .from('profiles')
+      .select('*')
+      .eq('id', currentSession.user.id)
+      .maybeSingle();
+    if (error) throw error;
+    currentProfile = data || null;
+  } catch (e) {
+    currentProfile = null;
+  }
+}
+
+async function refreshAuthAndRender() {
+  await checkProfile();
+  updateAuthUI();
+  renderFeed();
+  renderDirectory();
+  if (currentSession && currentProfile) {
+    if (joinModal.classList.contains('open')) closeJoinModal();
+    if (pendingAction) {
+      const action = pendingAction;
+      pendingAction = null;
+      action();
+    }
+  } else if (currentSession && !currentProfile) {
+    // Session exists but no profile row yet — invite them to finish.
+    openJoinModal('profile');
+  }
+}
+
+sb.auth.getSession().then(({ data }) => {
+  currentSession = data.session || null;
+  refreshAuthAndRender();
+});
+
+sb.auth.onAuthStateChange((event, session) => {
+  currentSession = session || null;
+  refreshAuthAndRender();
+});
+
+document.getElementById('signOutLink').addEventListener('click', async (e) => {
+  e.preventDefault();
+  await sb.auth.signOut();
+  currentSession = null;
+  currentProfile = null;
+  updateAuthUI();
+  renderFeed();
+  renderDirectory();
+});
+
+// ── STEP 1: EMAIL MAGIC LINK ──
+document.getElementById('joinEmailBtn').addEventListener('click', async () => {
+  const emailInput = document.getElementById('joinEmailInput');
+  const msgEl = document.getElementById('joinLoginMsg');
+  const email = emailInput.value.trim();
+  if (!email || !email.includes('@')) {
+    showMsg(msgEl, 'Please enter a valid email address.', 'error');
+    return;
+  }
+  const btn = document.getElementById('joinEmailBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  try {
+    const { error } = await sb.auth.signInWithOtp({
+      email,
+      options: { emailRedirectTo: window.location.href }
+    });
+    if (error) throw error;
+    showMsg(msgEl, 'Check your email for a sign-in link.', 'success');
+  } catch (e) {
+    showMsg(msgEl, GENERIC_ERROR, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send Magic Link';
+  }
+});
+
+// ── STEP 2: COMPLETE PROFILE ──
+document.getElementById('profileSubmitBtn').addEventListener('click', async () => {
+  const msgEl = document.getElementById('profileMsg');
+  const nameInput  = document.getElementById('profileNameInput');
+  const bioInput   = document.getElementById('profileBioInput');
+  const phoneInput = document.getElementById('profilePhoneInput');
+  const fileInput  = document.getElementById('profileAvatarInput');
+
+  const displayName = nameInput.value.trim();
+  if (!displayName) {
+    showMsg(msgEl, 'Please enter a display name.', 'error');
+    return;
+  }
+  if (!currentSession) {
+    showMsg(msgEl, GENERIC_ERROR, 'error');
+    return;
+  }
+
+  const btn = document.getElementById('profileSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Saving...';
+
+  try {
+    let avatarUrl = null;
+    const file = fileInput.files && fileInput.files[0];
+    if (file) {
+      const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+      const path = `${currentSession.user.id}/avatar-${Date.now()}.${ext}`;
+      const { error: uploadError } = await sb.storage
+        .from('community-photos')
+        .upload(path, file, { upsert: true });
+      if (uploadError) throw uploadError;
+      const { data: pub } = sb.storage.from('community-photos').getPublicUrl(path);
+      avatarUrl = pub.publicUrl;
+    }
+
+    const { error: insertError } = await sb.from('profiles').insert({
+      id: currentSession.user.id,
+      display_name: displayName,
+      bio: bioInput.value.trim() || null,
+      phone: phoneInput.value.trim() || null,
+      avatar_url: avatarUrl
+    });
+    if (insertError) throw insertError;
+
+    showMsg(msgEl, 'Profile saved! Welcome to the fellowship.', 'success');
+    await refreshAuthAndRender();
+  } catch (e) {
+    showMsg(msgEl, GENERIC_ERROR, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Save Profile';
+  }
+});
+
+// ── FEED: LOAD ──
+async function loadFeed() {
+  const feedList = document.getElementById('feedList');
+  try {
+    const { data: posts, error: postsError } = await sb
+      .from('posts')
+      .select('*')
+      .order('pinned', { ascending: false })
+      .order('created_at', { ascending: false });
+    if (postsError) throw postsError;
+    feedPosts = posts || [];
+
+    const authorIds = [...new Set(feedPosts.map(p => p.author_id))];
+    feedAuthors = {};
+    if (authorIds.length) {
+      const { data: authors, error: authorsError } = await sb
+        .from('public_profiles')
+        .select('*')
+        .in('id', authorIds);
+      if (authorsError) throw authorsError;
+      (authors || []).forEach(a => { feedAuthors[a.id] = a; });
+    }
+
+    const postIds = feedPosts.map(p => p.id);
+    feedReactions = {};
+    feedComments = {};
+    if (postIds.length) {
+      const [{ data: reactions, error: reactionsError }, { data: comments, error: commentsError }] = await Promise.all([
+        sb.from('post_reactions').select('*').in('post_id', postIds),
+        sb.from('comments').select('*').in('post_id', postIds).order('created_at', { ascending: true })
+      ]);
+      if (reactionsError) throw reactionsError;
+      if (commentsError) throw commentsError;
+
+      (reactions || []).forEach(r => {
+        if (!feedReactions[r.post_id]) feedReactions[r.post_id] = [];
+        feedReactions[r.post_id].push(r);
+      });
+
+      const commentAuthorIds = [...new Set((comments || []).map(c => c.author_id))];
+      let commentAuthors = {};
+      if (commentAuthorIds.length) {
+        const { data: cAuthors } = await sb.from('public_profiles').select('*').in('id', commentAuthorIds);
+        (cAuthors || []).forEach(a => { commentAuthors[a.id] = a; });
+      }
+      (comments || []).forEach(c => {
+        if (!feedComments[c.post_id]) feedComments[c.post_id] = [];
+        feedComments[c.post_id].push({ ...c, author: commentAuthors[c.author_id] });
+      });
+    }
+
+    renderFeed();
+  } catch (e) {
+    feedList.innerHTML = '<p class="loading-text">Something went wrong loading the feed — please try again.</p>';
+  }
+}
+
+// ── FEED: RENDER ──
+function reactionRowHtml(postId) {
+  const reactions = feedReactions[postId] || [];
+  const myReaction = currentProfile ? reactions.find(r => r.profile_id === currentProfile.id) : null;
+  return `<div class="reaction-row">` + REACTION_TYPES.map(type => {
+    const count = reactions.filter(r => r.emoji === type).length;
+    const isActive = myReaction && myReaction.emoji === type;
+    return `<button class="reaction-btn${isActive ? ' active' : ''}" data-action="react" data-post-id="${postId}" data-emoji="${type}" title="${REACTION_LABELS[type]}">${REACTION_ICONS[type]}<span>${count}</span></button>`;
+  }).join('') + `</div>`;
+}
+
+function commentThreadHtml(postId) {
+  const comments = feedComments[postId] || [];
+  const list = comments.map(c => {
+    const author = c.author || { display_name: 'Member', avatar_url: null };
+    return `
+      <div class="comment-item">
+        ${avatarHtml(author)}
+        <div class="comment-bubble">
+          <div class="comment-author">${escapeHtml(author.display_name)}</div>
+          <div class="comment-text">${escapeHtml(c.body)}</div>
+        </div>
+      </div>`;
+  }).join('');
+  return `
+    <div class="comment-thread">
+      ${list}
+      <div class="comment-form">
+        <input type="text" placeholder="Add a comment..." data-comment-input="${postId}">
+        <button data-action="comment" data-post-id="${postId}">Reply</button>
+      </div>
+    </div>`;
+}
+
+function postCardHtml(post) {
+  const author = feedAuthors[post.author_id] || { display_name: 'Member', avatar_url: null };
+  const imageHtml = post.image_url ? `<img class="post-image" src="${escapeHtml(post.image_url)}" alt="">` : '';
+  return `
+    <div class="post-card reveal visible${post.pinned ? ' pinned' : ''}">
+      ${post.pinned ? '<div class="post-pin-badge">Pinned</div>' : ''}
+      <div class="post-header">
+        ${avatarHtml(author)}
+        <div>
+          <div class="post-author-name">${escapeHtml(author.display_name)}</div>
+          <div class="post-time">${timeAgo(post.created_at)}</div>
+        </div>
+      </div>
+      ${post.body ? `<div class="post-body">${escapeHtml(post.body)}</div>` : ''}
+      ${imageHtml}
+      ${reactionRowHtml(post.id)}
+      ${commentThreadHtml(post.id)}
+    </div>`;
+}
+
+function renderFeed() {
+  const feedList = document.getElementById('feedList');
+  if (!feedPosts.length) {
+    feedList.innerHTML = '<p class="loading-text">No posts yet — be the first to share something with the fellowship.</p>';
+    return;
+  }
+  feedList.innerHTML = feedPosts.map(postCardHtml).join('');
+}
+
+// ── FEED: EVENT DELEGATION (reactions + comments) ──
+document.getElementById('feedList').addEventListener('click', (e) => {
+  const reactBtn = e.target.closest('[data-action="react"]');
+  if (reactBtn) {
+    const postId = reactBtn.dataset.postId;
+    const emoji  = reactBtn.dataset.emoji;
+    requireMember(() => toggleReaction(postId, emoji));
+    return;
+  }
+  const commentBtn = e.target.closest('[data-action="comment"]');
+  if (commentBtn) {
+    const postId = commentBtn.dataset.postId;
+    const input = document.querySelector(`[data-comment-input="${postId}"]`);
+    const body = input ? input.value.trim() : '';
+    requireMember(() => submitComment(postId, body, input));
+    return;
+  }
+});
+
+document.getElementById('feedList').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && e.target.matches('[data-comment-input]')) {
+    const postId = e.target.dataset.commentInput;
+    const body = e.target.value.trim();
+    requireMember(() => submitComment(postId, body, e.target));
+  }
+});
+
+// ── REACTIONS ──
+async function toggleReaction(postId, emoji) {
+  try {
+    const existing = (feedReactions[postId] || []).find(r => r.profile_id === currentProfile.id);
+    if (existing && existing.emoji === emoji) {
+      const { error } = await sb.from('post_reactions')
+        .delete().eq('post_id', postId).eq('profile_id', currentProfile.id);
+      if (error) throw error;
+    } else {
+      const { error } = await sb.from('post_reactions')
+        .upsert({ post_id: postId, profile_id: currentProfile.id, emoji }, { onConflict: 'post_id,profile_id' });
+      if (error) throw error;
+    }
+    await loadFeed();
+  } catch (e) {
+    alert(GENERIC_ERROR);
+  }
+}
+
+// ── COMMENTS ──
+async function submitComment(postId, body, inputEl) {
+  if (!body) return;
+  try {
+    const { error } = await sb.from('comments').insert({
+      post_id: postId,
+      author_id: currentProfile.id,
+      body
+    });
+    if (error) throw error;
+    if (inputEl) inputEl.value = '';
+    await loadFeed();
+  } catch (e) {
+    alert(GENERIC_ERROR);
+  }
+}
+
+// ── COMPOSER: NEW POST ──
+async function submitPost() {
+  const bodyInput = document.getElementById('composerBody');
+  const fileInput = document.getElementById('composerPhoto');
+  const msgEl = document.getElementById('composerMsg');
+  const body = bodyInput.value.trim();
+  const file = fileInput.files && fileInput.files[0];
+
+  if (!body && !file) {
+    showMsg(msgEl, 'Write something or add a photo before posting.', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('composerSubmit');
+  btn.disabled = true;
+  btn.textContent = 'Posting...';
+
+  try {
+    let imageUrl = null;
+    if (file) {
+      const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+      const path = `${currentProfile.id}/post-${Date.now()}.${ext}`;
+      const { error: uploadError } = await sb.storage.from('community-photos').upload(path, file);
+      if (uploadError) throw uploadError;
+      const { data: pub } = sb.storage.from('community-photos').getPublicUrl(path);
+      imageUrl = pub.publicUrl;
+    }
+
+    const { error } = await sb.from('posts').insert({
+      author_id: currentProfile.id,
+      body: body || null,
+      image_url: imageUrl
+    });
+    if (error) throw error;
+
+    bodyInput.value = '';
+    fileInput.value = '';
+    hideMsg(msgEl);
+    await loadFeed();
+  } catch (e) {
+    showMsg(msgEl, GENERIC_ERROR, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Post';
+  }
+}
+
+document.getElementById('composerSubmit').addEventListener('click', () => requireMember(submitPost));
+
+// ── MEMBER DIRECTORY ──
+async function renderDirectory() {
+  const el = document.getElementById('directoryContent');
+  if (!currentSession || !currentProfile) {
+    el.innerHTML = '<div class="directory-locked">Sign in to see the full fellowship directory.</div>';
+    return;
+  }
+  el.innerHTML = '<p class="loading-text">Loading...</p>';
+  try {
+    const { data, error } = await sb
+      .from('profiles')
+      .select('*')
+      .eq('active', true)
+      .order('display_name', { ascending: true });
+    if (error) throw error;
+    if (!data || !data.length) {
+      el.innerHTML = '<p class="loading-text">No members yet.</p>';
+      return;
+    }
+    el.innerHTML = `<div class="leadership-grid">` + data.map(p => `
+      <div class="leader-card reveal visible">
+        <div class="leader-role">${escapeHtml((p.role || 'member').toUpperCase())}</div>
+        <div class="leader-name">${escapeHtml(p.display_name)}</div>
+        ${p.bio ? `<p class="leader-contact" style="opacity:1;font-style:normal;margin-bottom:8px;">${escapeHtml(p.bio)}</p>` : ''}
+        ${p.phone ? `<div class="leader-contact">${escapeHtml(p.phone)}</div>` : ''}
+      </div>
+    `).join('') + `</div>`;
+  } catch (e) {
+    el.innerHTML = '<p class="loading-text">Something went wrong loading the directory — please try again.</p>';
+  }
+}
+
+// ── INIT ──
+loadFeed();
+renderDirectory();
+
+loadPartials();
+</script>
+</body>
+</html>
