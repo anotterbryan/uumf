@@ -169,13 +169,23 @@ nav {
 }
 
 /* ── HERO FLAME (chalice + animated flame, sits behind the title) ── */
+.hero-title-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title {
+  position: relative;
+  z-index: 1;
+}
+
 .hero-flame {
   position: absolute;
-  top: 42%;
+  top: 50%;
   left: 50%;
-  width: min(300px, 55vw);
-  height: min(300px, 55vw);
-  z-index: 1;
+  width: min(260px, 70vw);
+  height: min(260px, 70vw);
+  z-index: 0;
   opacity: 0;
   pointer-events: none;
   mix-blend-mode: screen;
@@ -312,12 +322,24 @@ nav {
   animation: fadeUp 0.8s 1.4s forwards;
 }
 
-.hero-scroll span {
+.hero-quicklinks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(245,236,215,0.4);
 }
+
+.hero-quicklinks a {
+  color: rgba(245,236,215,0.45);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.hero-quicklinks a:hover { color: var(--gold); }
+
+.hero-quicklinks span { color: rgba(245,236,215,0.25); }
 
 .scroll-line {
   width: 1px;
@@ -329,6 +351,12 @@ nav {
 /* ── SECTIONS ── */
 section {
   padding: 100px 24px;
+}
+
+.page-hero {
+  background: var(--ink);
+  padding: 120px 24px 80px;
+  text-align: center;
 }
 
 .container {
@@ -1276,10 +1304,14 @@ footer .footer-links a:hover { color: var(--gold); }
   .chant-modal-inner { padding: 32px 24px; }
   .portal-grid { grid-template-columns: 1fr 1fr; }
   .next-gathering { padding: 24px; gap: 20px; }
+  section { padding: 64px 20px; }
+  .page-hero { padding: 88px 20px 56px; }
 }
 
 @media (max-width: 480px) {
   .portal-grid { grid-template-columns: 1fr; }
+  section { padding: 48px 16px; }
+  .page-hero { padding: 72px 16px 44px; }
 }
 
 /* ── COMMUNITY FEED ── */
