@@ -26,6 +26,23 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-ring"></div>
+  <!-- EDIT: HERO FLAME — decorative chalice flame animation, sits behind the title. Adjust `top` in .hero-flame (styles.css) if it drifts off the title on your screen. -->
+  <div class="hero-flame" aria-hidden="true">
+    <svg class="hero-flame-svg" viewBox="0 0 200 200">
+      <path class="chalice-bowl" d="M50,84 C50,118 71,134 100,134 C129,134 150,118 150,84" />
+      <line class="chalice-stem" x1="100" y1="134" x2="100" y2="168" />
+      <line class="chalice-base" x1="80" y1="168" x2="120" y2="168" />
+      <g class="flame-layer flame-outer">
+        <path class="flame" d="M100,84 C70,70 65,40 85,20 C90,15 95,20 92,28 C100,15 115,25 112,45 C130,60 125,80 100,84 Z" />
+      </g>
+      <g class="flame-layer flame-mid">
+        <path class="flame" d="M100,84 C70,70 65,40 85,20 C90,15 95,20 92,28 C100,15 115,25 112,45 C130,60 125,80 100,84 Z" />
+      </g>
+      <g class="flame-layer flame-inner">
+        <path class="flame" d="M100,84 C70,70 65,40 85,20 C90,15 95,20 92,28 C100,15 115,25 112,45 C130,60 125,80 100,84 Z" />
+      </g>
+    </svg>
+  </div>
   <div class="hero-content">
     <!-- ============================================================
          EDIT: HERO TEXT
