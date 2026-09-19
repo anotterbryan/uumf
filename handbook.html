@@ -37,6 +37,7 @@
 <div class="sub-nav">
   <div class="sub-nav-inner">
     <a href="#norms">Norms &amp; Traditions</a>
+    <a href="#chalice-lightings">Chalice Lightings</a>
     <a href="#chants">Chants</a>
     <a href="#songs">Songs</a>
     <a href="#poems">Poems</a>
@@ -132,6 +133,26 @@
   </div>
 </section>
 
+<!-- CHALICE LIGHTINGS -->
+<section id="chalice-lightings" style="background:var(--ink);">
+  <div class="container">
+    <div class="reveal">
+      <!-- ============================================================
+           EDIT: CHALICE LIGHTINGS
+           Lighting data is in assets/js/chalice-lightings-data.js — edit it there.
+           A growing collection geared toward brotherhood, community,
+           connection, and gathering — sourced from UUA WorshipWeb and
+           other UU sources, always with author + source attribution.
+           ============================================================ -->
+      <span class="section-label" style="color:var(--gold);">Opening Words</span>
+      <h2 class="section-title" style="color:var(--parch);">Chalice <em style="color:var(--burnt-lt);">Lightings</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-body" style="color:rgba(245,236,215,0.7);">Words to light the chalice at the opening of a gathering — a growing collection, chosen for themes of brotherhood, community, connection, and coming together.</p>
+    </div>
+    <div id="chaliceLightingsGrid" style="margin-top:48px;"></div>
+  </div>
+</section>
+
 <!-- CHANTS -->
 <section id="chants" style="background:var(--smoke);">
   <div class="container">
@@ -208,6 +229,7 @@
 <script src="assets/js/songs-data.js"></script>
 <script src="assets/js/poems-data.js"></script>
 <script src="assets/js/chants-data.js"></script>
+<script src="assets/js/chalice-lightings-data.js"></script>
 <script src="assets/js/components.js"></script>
 <script>
   // Render song cards
@@ -237,6 +259,28 @@
     `;
     songsGrid.appendChild(card);
   });
+
+  // Render chalice lighting cards
+  const chaliceLightingsGrid = document.getElementById('chaliceLightingsGrid');
+  if (chaliceLightings.length === 0) {
+    chaliceLightingsGrid.innerHTML = `<p style="color:rgba(245,236,215,0.4); font-style:italic; font-size:0.9rem;">This collection is just getting started — check back as we add chalice lightings themed around brotherhood, community, and gathering.</p>`;
+  } else {
+    chaliceLightings.forEach(cl => {
+      const wrap = document.createElement('div');
+      wrap.className = 'reveal';
+      wrap.style.marginTop = '24px';
+      const attribution = [cl.author, cl.source].filter(Boolean).join(' · ');
+      const sourceLink = cl.sourceUrl ? ` <a href="${cl.sourceUrl}" target="_blank" style="color:var(--gold); font-size:0.8rem;">(source)</a>` : '';
+      wrap.innerHTML = `
+        <div class="song-card" style="border-left-color:var(--gold);background:rgba(245,236,215,0.05);border:1px solid rgba(196,149,42,0.2);">
+          <div class="song-title" style="color:var(--parch);">${cl.title}</div>
+          <div class="song-author" style="color:var(--gold);">${attribution}${sourceLink}</div>
+          <div class="song-lyrics" style="color:rgba(245,236,215,0.75);">${cl.text}</div>
+        </div>
+      `;
+      chaliceLightingsGrid.appendChild(wrap);
+    });
+  }
 
   // Render chant cards
   const grid = document.getElementById('chantsGrid');
