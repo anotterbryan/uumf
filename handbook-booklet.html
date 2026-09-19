@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UU Men's Fellowship — Handbook · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a0f05;--parch:#f5ecd7;--gold:#c4952a;--burnt:#c1440e;--burnt-dk:#8a2d07;--gold-lt:#e8b84b;--ink-lt:#3d2510;--smoke:#f9f4ec;--parch-dk:#e8d5b0;}
+@page{size:5.5in 8.5in;margin:0;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Crimson Pro',Georgia,serif;font-size:10pt;line-height:1.65;color:var(--ink);background:#3a3530;}
+.print-tip{position:fixed;top:0;left:0;right:0;z-index:999;background:var(--ink);color:var(--parch);font-family:'Crimson Pro',Georgia,serif;font-size:12px;padding:10px 16px;text-align:center;border-bottom:2px solid var(--gold);}
+.print-tip strong{color:var(--gold);}
+@media print{.print-tip{display:none!important;}body{background:white;}}
+.page{width:5.5in;min-height:8.5in;background:white;margin:60px auto 0;box-shadow:0 4px 24px rgba(0,0,0,0.4);overflow:hidden;page-break-after:always;}
+.page:first-of-type{margin-top:80px;}
+.cover,.back-cover{background:var(--ink);}
+.page-inner{padding:0.5in;}
+.cover-inner,.back-inner{padding:0.6in 0.65in;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:8.5in;}
+h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:700;line-height:1.2;}
+.lbl{font-family:'Bebas Neue',Arial,sans-serif;font-size:7pt;letter-spacing:0.22em;color:var(--burnt);text-transform:uppercase;margin-bottom:4pt;display:block;}
+.rule{width:40pt;height:1.5pt;background:var(--gold);margin:8pt 0 12pt;}
+.sec-head{margin:0 -0.5in;padding:14pt 0.5in 12pt;background:var(--burnt);color:white;margin-bottom:18pt;}
+.sec-head .lbl{color:rgba(255,255,255,0.7);}
+.sec-head h2{font-size:18pt;color:white;}
+h2{font-size:16pt;color:var(--ink);margin-bottom:6pt;}
+h2 em{font-style:italic;color:var(--burnt);}
+h3{font-size:12pt;color:var(--ink);margin-bottom:5pt;margin-top:12pt;}
+p{margin-bottom:7pt;font-size:10pt;line-height:1.65;color:var(--ink-lt);}
+.v-item{display:flex;gap:10pt;margin-bottom:10pt;page-break-inside:avoid;}
+.v-num{font-family:'Bebas Neue',Arial,sans-serif;font-size:15pt;color:var(--gold);min-width:20pt;line-height:1;padding-top:2pt;}
+.v-text strong{font-family:'Playfair Display',Georgia,serif;font-size:10.5pt;display:block;margin-bottom:2pt;color:var(--ink);}
+.v-text p{margin-bottom:0;font-size:9.5pt;}
+.read-aloud{background:white;border:1px solid var(--parch-dk);border-left:3pt solid var(--gold);padding:9pt 11pt;margin-top:8pt;margin-bottom:0;page-break-inside:avoid;}
+.read-aloud strong{font-family:'Playfair Display',Georgia,serif;font-size:9.5pt;display:block;margin-bottom:5pt;color:var(--ink);}
+.read-aloud .ra-cue{font-size:8pt;color:var(--burnt);font-style:italic;margin-bottom:4pt;}
+.read-aloud .ra-quote{font-size:9pt;font-style:italic;color:var(--ink);line-height:1.6;margin-bottom:0;}
+.read-aloud .ra-instr{font-size:8.5pt;color:var(--ink-lt);margin-bottom:0;}
+.read-aloud + .read-aloud{margin-top:7pt;}
+.ra-stack{margin-top:10pt;display:flex;flex-direction:column;gap:7pt;}
+.toc-row{display:flex;justify-content:space-between;align-items:baseline;padding:4pt 0;border-bottom:1px dotted var(--parch-dk);}
+.toc-row:last-child{border-bottom:none;}
+.toc-title{font-weight:600;color:var(--ink);}
+.toc-detail{font-size:9pt;font-style:italic;color:var(--ink-lt);}
+.chant-grid{display:grid;grid-template-columns:1fr 1fr;gap:8pt;margin-top:10pt;}
+.chant-box{border:1px solid var(--parch-dk);background:var(--smoke);padding:9pt;page-break-inside:avoid;}
+.ch-num{font-family:'Bebas Neue',Arial,sans-serif;font-size:7pt;letter-spacing:0.15em;color:var(--burnt);margin-bottom:2pt;}
+.ch-title{font-family:'Playfair Display',Georgia,serif;font-size:10pt;font-weight:700;color:var(--ink);margin-bottom:5pt;}
+.ch-lyrics{font-size:8.5pt;color:var(--ink-lt);line-height:1.5;white-space:pre-line;}
+.ch-note{font-size:7.5pt;color:var(--burnt);font-style:italic;margin-top:4pt;line-height:1.4;}
+.song-item{margin-bottom:14pt;border-top:1px solid var(--parch-dk);padding-top:11pt;page-break-inside:avoid;}
+.song-item:first-child{border-top:none;padding-top:0;}
+.s-hymn{font-family:'Bebas Neue',Arial,sans-serif;font-size:7pt;letter-spacing:0.15em;color:var(--gold);margin-bottom:2pt;}
+.s-title{font-family:'Playfair Display',Georgia,serif;font-size:12pt;font-weight:700;color:var(--ink);margin-bottom:1pt;}
+.s-author{font-size:8.5pt;color:var(--ink-lt);font-style:italic;margin-bottom:7pt;}
+.s-stanza{font-size:9.5pt;line-height:1.6;color:var(--ink-lt);margin-bottom:6pt;}
+.s-note{font-size:8pt;color:var(--burnt);font-style:italic;margin-top:4pt;}
+.poem-section{background:var(--ink);margin:0 -0.5in;padding:0.5in;}
+.p-subhead{margin-bottom:16pt;}
+.p-subhead .lbl{color:var(--gold);}
+.p-subhead em{display:block;color:rgba(245,236,215,0.5);font-style:italic;font-size:9pt;}
+.poem-item{margin-bottom:16pt;page-break-inside:avoid;}
+.p-title{font-family:'Playfair Display',Georgia,serif;font-size:11pt;font-weight:700;color:var(--parch);margin-bottom:1pt;}
+.p-author{font-size:8pt;color:var(--gold);font-style:italic;margin-bottom:6pt;}
+.p-text{font-size:9pt;line-height:1.65;color:rgba(245,236,215,0.75);white-space:pre-line;}
+.chalice-svg{stroke:var(--gold);}
+.chalice-svg.white{stroke:white;}
+</style>
+</head>
+<body>
+<div class="print-tip">
+  <strong>To print as booklet:</strong> File → Print → More settings → Pages per sheet: 2 → Two-sided (Short-edge binding) → Landscape → Save as PDF.
+</div>
+
+<!-- COVER -->
+<div class="page cover">
+  <div class="cover-inner">
+    <svg class="chalice-svg white" viewBox="0 0 24 24" width="100" height="100" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:20pt;">
+      <path d="M12 10 C10 7 13 5 12 2 C11 5 14 7 12 10 Z"/>
+      <path d="M6 10 C6 14 8.5 16 12 16 C15.5 16 18 14 18 10"/>
+      <line x1="12" y1="16" x2="12" y2="20"/>
+      <line x1="8" y1="20" x2="16" y2="20"/>
+    </svg>
+    <div style="font-family:'Bebas Neue',Arial,sans-serif;font-size:8pt;letter-spacing:0.3em;color:var(--gold);margin-bottom:10pt;">First Unitarian Universalist Church of San Diego</div>
+    <div style="font-family:'Playfair Display',Georgia,serif;font-size:30pt;font-weight:900;color:var(--parch);line-height:1.1;margin-bottom:6pt;">UU Men's<br><em style="color:var(--gold);">Fellowship</em></div>
+    <div style="font-family:'Playfair Display',Georgia,serif;font-size:15pt;font-weight:700;color:var(--parch);margin-bottom:4pt;">Handbook</div>
+    <div style="width:50pt;height:1.5pt;background:var(--gold);margin:6pt auto 18pt;"></div>
+    <div style="font-family:'Crimson Pro',Georgia,serif;font-size:9.5pt;font-style:italic;color:rgba(245,236,215,0.6);line-height:1.7;max-width:270pt;">Order of Service · Norms &amp; Traditions<br>Chants · Songs &amp; Hymns · Poems &amp; Readings</div>
+    <div style="margin-top:auto;padding-top:32pt;font-family:'Bebas Neue',Arial,sans-serif;font-size:9pt;letter-spacing:0.25em;color:rgba(245,236,215,0.3);">2026</div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="page">
+  <div class="page-inner">
+    <span class="lbl">Contents</span>
+    <h2 style="margin-bottom:4pt;">Table of <em>Contents</em></h2>
+    <div class="rule"></div>
+    <div class="toc-row"><span class="toc-title">Order of Service</span><span class="toc-detail">The Fourth Monday script</span></div>
+    <div class="toc-row"><span class="toc-title">Norms &amp; Traditions</span><span class="toc-detail">Nine fellowship agreements</span></div>
+    <div class="toc-row"><span class="toc-title">The Chants</span><span class="toc-detail">Fifteen chants with full lyrics</span></div>
+    <div class="toc-row"><span class="toc-title">Songs &amp; Hymns</span><span class="toc-detail">Nine songs with full lyrics</span></div>
+    <div class="toc-row"><span class="toc-title">Poems &amp; Readings</span><span class="toc-detail">Poems and readings</span></div>
+    <p style="margin-top:18pt;font-size:8.5pt;font-style:italic;color:var(--ink-lt);">This is the practical member's handbook — the script and reference for running a gathering. For the full guide to the fellowship (mission, meetings, renewals, history), see the companion Member Guide &amp; Handbook booklet.</p>
+  </div>
+</div>
+
+<!-- ORDER OF SERVICE -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">Each Fourth Monday</span><h2>Order of <em>Service</em></h2></div>
+    <p>Our evening follows a consistent rhythm — familiar enough to feel like home, open enough to hold whatever arises.</p>
+
+    <div class="v-item"><div class="v-num">6–7</div><div class="v-text"><strong>Potluck Dinner</strong><p>Arrive, share food, and connect informally. First-timers never need to bring a dish — just come as you are.</p></div></div>
+
+    <div class="v-item"><div class="v-num">7pm</div><div class="v-text"><strong>Welcome Circle Opens</strong><p>We come together as a group and open the circle with four elements. The facilitator (or any member) can read the passages below aloud.</p></div></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-inner">
+    <span class="lbl">Welcome Circle — Read Aloud</span>
+    <div class="rule"></div>
+    <div class="ra-stack">
+      <div class="read-aloud">
+        <strong>1. Mission Statement</strong>
+        <p class="ra-cue">Facilitator reads aloud:</p>
+        <p class="ra-quote">"Our mission is to support men in the quest for lives of compassion, integrity, responsibility, and balance. We are a caring, intentionally diverse brotherhood, committed to social justice, and offering opportunities for intimate sharing, personal growth, and spiritual deepening. Our goal as a fellowship is that after each gathering, we can say to ourselves that we know a little more about ourselves as men, sons, and brothers."</p>
+      </div>
+      <div class="read-aloud">
+        <strong>2. Lighting of the Chalice</strong>
+        <p class="ra-instr">A chalice is lit to mark the opening of our shared space. Suggested words (customize as you like):</p>
+        <p class="ra-quote">"We light this chalice to mark the beginning of our time together — a symbol of the light we bring to one another, and the truth we seek in community."</p>
+      </div>
+      <div class="read-aloud">
+        <strong>3. Gong of the Bowl</strong>
+        <p class="ra-instr" style="margin-bottom:0;">Ring the bowl once. Allow the sound to fade into silence — a slow count of ten — before speaking again. A moment of collective stillness; we arrive together before we begin.</p>
+      </div>
+      <div class="read-aloud">
+        <strong>4. Confidentiality Statement</strong>
+        <p class="ra-cue">Facilitator reads aloud:</p>
+        <p class="ra-quote">"The fellowship is built upon trust that what is shared in ALL the circles is to be held in the strictest of confidence!"</p>
+      </div>
+    </div>
+
+    <div style="margin-top:16pt;">
+      <div class="v-item"><div class="v-num">7–8</div><div class="v-text"><strong>Circle Check-In</strong><p>Each man takes a turn to share how he's doing — what's alive for him, what he's carrying or celebrating. No cross-talk. No advice. Just being heard.</p></div></div>
+      <div class="v-item"><div class="v-num">8–9</div><div class="v-text"><strong>Small Groups</strong><p>We break into smaller circles to go deeper — sharing responses to questions or themes, supporting one another. After small group time, we return as a full circle.</p></div></div>
+      <div class="v-item"><div class="v-num">9pm</div><div class="v-text"><strong>Closing Circle</strong><p>We close with a poem, song, or chant together — then clean up, stack chairs, and put the space back as we found it.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NORMS -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">How We Be Together</span><h2>Norms &amp; <em>Traditions</em></h2></div>
+    <p>Our official Gathering Guidelines, verbatim — plus two long-standing practices that round out how we hold the space together.</p>
+    <div style="margin-top:12pt;">
+      <div class="v-item"><div class="v-num">01</div><div class="v-text"><strong>Confidentiality</strong><p>The fellowship is built upon trust that what is shared in ALL the circles is to be held in the strictest of confidence!</p></div></div>
+      <div class="v-item"><div class="v-num">02</div><div class="v-text"><strong>The Right to Reticence</strong><p>Share only as deep as you are comfortable.</p></div></div>
+      <div class="v-item"><div class="v-num">03</div><div class="v-text"><strong>Use "I" Statements</strong><p>Tell YOUR story and how YOU feel.</p></div></div>
+      <div class="v-item"><div class="v-num">04</div><div class="v-text"><strong>Active Listening</strong><p>No cross talk.</p></div></div>
+      <div class="v-item"><div class="v-num">05</div><div class="v-text"><strong>Give No Advice</strong><p>Unless requested, and usually after the gathering.</p></div></div>
+      <div class="v-item"><div class="v-num">06</div><div class="v-text"><strong>Speak Loudly</strong><p>So that all can hear and understand your story.</p></div></div>
+      <div class="v-item"><div class="v-num">07</div><div class="v-text"><strong>Allow Time for Everyone to Share</strong><p>Before you share a second time.</p></div></div>
+      <div class="v-item"><div class="v-num">08</div><div class="v-text"><strong>Chants Are Sung Together</strong><p>Chants are sung three times — the first time robust, the second louder, the third quieter or hummed. The leader often steps up volume on key phrases. Tune out your inner critic and just sing.</p></div></div>
+      <div class="v-item"><div class="v-num">09</div><div class="v-text"><strong>The Potluck Is Part of the Gathering</strong><p>Breaking bread together is the first act of fellowship. Come early enough to share the meal. First-timers are never expected to bring food.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHANTS -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">Oral Tradition</span><h2>The <em>Chants</em></h2></div>
+    <p>Chants are sung three times — robust, louder, then quieter or hummed. The leader often steps up volume on key phrases.</p>
+    <div id="chantsBooklet" class="chant-grid"></div>
+  </div>
+</div>
+
+<!-- SONGS -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">Songs &amp; Hymns</span><h2>Music of the <em>Fellowship</em></h2></div>
+    <div id="songsBooklet"></div>
+  </div>
+</div>
+
+<!-- POEMS -->
+<div class="page" style="background:var(--ink);">
+  <div class="page-inner">
+    <div class="sec-head" style="background:rgba(255,255,255,0.08);"><span class="lbl" style="color:rgba(255,255,255,0.6);">Words That Hold Us</span><h2 style="color:var(--parch);">Poems &amp; <em style="color:var(--gold);">Readings</em></h2></div>
+    <div id="poemsBooklet"></div>
+  </div>
+</div>
+
+<!-- BACK COVER -->
+<div class="page back-cover">
+  <div class="back-inner">
+    <svg class="chalice-svg" viewBox="0 0 24 24" width="50" height="50" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:16pt;opacity:0.6;">
+      <path d="M12 10 C10 7 13 5 12 2 C11 5 14 7 12 10 Z"/>
+      <path d="M6 10 C6 14 8.5 16 12 16 C15.5 16 18 14 18 10"/>
+      <line x1="12" y1="16" x2="12" y2="20"/>
+      <line x1="8" y1="20" x2="16" y2="20"/>
+    </svg>
+    <div style="font-family:'Playfair Display',Georgia,serif;font-size:11pt;font-style:italic;color:rgba(245,236,215,0.5);line-height:1.7;max-width:270pt;margin-bottom:20pt;">"The fellowship is built upon trust that what is shared in ALL the circles is to be held in the strictest of confidence."</div>
+    <div style="width:40pt;height:1pt;background:var(--gold);margin:0 auto 20pt;"></div>
+    <div style="font-family:'Bebas Neue',Arial,sans-serif;font-size:8pt;letter-spacing:0.2em;color:rgba(245,236,215,0.4);margin-bottom:4pt;">UU Men's Fellowship</div>
+    <div style="font-family:'Bebas Neue',Arial,sans-serif;font-size:7.5pt;letter-spacing:0.15em;color:rgba(245,236,215,0.3);margin-bottom:16pt;">First Unitarian Universalist Church of San Diego<br>Hillcrest Campus · San Diego, CA</div>
+    <div style="font-family:'Crimson Pro',Georgia,serif;font-size:9pt;color:rgba(245,236,215,0.35);font-style:italic;margin-bottom:4pt;">All men welcome. No church membership required.</div>
+    <div style="font-family:'Bebas Neue',Arial,sans-serif;font-size:7pt;letter-spacing:0.15em;color:rgba(245,236,215,0.25);margin-top:auto;padding-top:24pt;">firstuusandiego.org · 2026</div>
+  </div>
+</div>
+
+<script src="assets/js/chants-data.js"></script>
+<script src="assets/js/songs-data.js"></script>
+<script src="assets/js/poems-data.js"></script>
+<script>
+// Render chants in booklet
+const cb = document.getElementById('chantsBooklet');
+if (cb && typeof chants !== 'undefined') {
+  chants.forEach(c => {
+    const d = document.createElement('div');
+    d.className = 'chant-box';
+    d.innerHTML = `<div class="ch-num">Chant ${String(c.num).padStart(2,'0')}</div><div class="ch-title">${c.title}</div><div class="ch-lyrics">${c.lyrics}</div>${c.note ? `<div class="ch-note">${c.note}</div>` : ''}`;
+    cb.appendChild(d);
+  });
+}
+
+// Render songs in booklet
+const sb = document.getElementById('songsBooklet');
+if (sb && typeof songs !== 'undefined') {
+  songs.forEach(s => {
+    const d = document.createElement('div');
+    d.className = 'song-item';
+    const stanzaHtml = s.stanzas.map(st => {
+      const lines = st.split('\n');
+      const isLabel = lines[0].match(/^(Verse \d+:|En Español:)/i);
+      if (isLabel) return `<div class="s-stanza"><em>${lines[0]}</em><br>${lines.slice(1).join('<br>')}</div>`;
+      return `<div class="s-stanza">${lines.join('<br>')}</div>`;
+    }).join('');
+    d.innerHTML = `<div class="s-hymn">${s.hymnNum}</div><div class="s-title">${s.title}</div><div class="s-author">${s.author}</div>${stanzaHtml}${s.note ? `<div class="s-note">${s.note}</div>` : ''}`;
+    sb.appendChild(d);
+  });
+}
+
+// Render poems in booklet
+const pb = document.getElementById('poemsBooklet');
+if (pb && typeof poems !== 'undefined') {
+  const subh = document.createElement('div');
+  subh.className = 'p-subhead';
+  subh.innerHTML = `<span class="lbl">Transcending Mystery and Wonder</span><em>The Celebration of Life</em>`;
+  poems.forEach((p, i) => {
+    if (i === 1) pb.appendChild(subh);
+    const d = document.createElement('div');
+    d.className = 'poem-item';
+    const authorLine = [p.author, p.context].filter(Boolean).join(' · ');
+    d.innerHTML = `<div class="p-title">${p.title}</div><div class="p-author">${authorLine}</div><div class="p-text">${p.text}</div>`;
+    pb.appendChild(d);
+  });
+}
+</script>
+</body>
+</html>
