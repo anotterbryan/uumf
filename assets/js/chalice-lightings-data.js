@@ -15,4 +15,37 @@
 // Blank line between stanzas/paragraphs.`
 //   },
 
-const chaliceLightings = [];
+const chaliceLightings = [
+  {
+    title: "Honoring Our Common Connection and Our Uniqueness",
+    author: "Adam Slate",
+    source: "UUA WorshipWeb",
+    sourceUrl: "https://www.uua.org/worship/words/chalice-lighting/honoring-our-common-connection-and-our-uniqueness",
+    text: `We gather this morning as one community
+A community united by common ideals:
+Love, justice, diversity, freedom, mutual care, equity.
+Yet look around.
+Look at the faces of those around you.
+Each face represents an individual
+Every one of us with our own story, needs, strengths, and faults.
+We light our chalice today honoring our common connection
+And also the uniqueness that lives within each of us.`
+  },
+  {
+    title: "Community Chalice Lighting",
+    author: "Atticus Palmer",
+    source: "UUA WorshipWeb",
+    sourceUrl: "https://www.uua.org/worship/words/chalice-lighting/community-chalice-lighting",
+    text: `We call this light before us in hope that we may always remain a strong community,
+working together to make the world a better place.
+When we are grieving or sad,
+When we are challenged,
+When we need help,
+This flame guides us out of the darkness.
+When we are cheerful,
+When we celebrate,
+When we accomplish a great task,
+When we return to a place that makes us happy,
+The chalice reminds us to share our happiness with others.`
+  },
+];

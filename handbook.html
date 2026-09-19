@@ -38,6 +38,7 @@
   <div class="sub-nav-inner">
     <a href="#norms">Norms &amp; Traditions</a>
     <a href="#chalice-lightings">Chalice Lightings</a>
+    <a href="#meditations">Meditations</a>
     <a href="#chants">Chants</a>
     <a href="#songs">Songs</a>
     <a href="#poems">Poems</a>
@@ -153,6 +154,25 @@
   </div>
 </section>
 
+<!-- MEDITATIONS -->
+<section id="meditations" style="background:var(--parch);">
+  <div class="container">
+    <div class="reveal">
+      <!-- ============================================================
+           EDIT: MEDITATIONS
+           Meditation data is in assets/js/meditations-data.js — edit it there.
+           A growing collection of guided meditations, separate from the
+           shorter Chalice Lightings above.
+           ============================================================ -->
+      <span class="section-label">Centering Practice</span>
+      <h2 class="section-title">Guided <em>Meditations</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-body">Longer guided meditations for moments that call for deeper stillness — at renewal weekends, focus groups, or whenever a gathering wants to slow down.</p>
+    </div>
+    <div id="meditationsGrid" style="margin-top:48px;"></div>
+  </div>
+</section>
+
 <!-- CHANTS -->
 <section id="chants" style="background:var(--smoke);">
   <div class="container">
@@ -230,6 +250,7 @@
 <script src="assets/js/poems-data.js"></script>
 <script src="assets/js/chants-data.js"></script>
 <script src="assets/js/chalice-lightings-data.js"></script>
+<script src="assets/js/meditations-data.js"></script>
 <script src="assets/js/components.js"></script>
 <script>
   // Render song cards
@@ -258,6 +279,27 @@
       <div class="song-body">${lyricsHtml}${noteHtml}</div>
     `;
     songsGrid.appendChild(card);
+  });
+
+  // Render meditation cards (accordion, since these run long)
+  const meditationsGrid = document.getElementById('meditationsGrid');
+  meditations.forEach(m => {
+    const card = document.createElement('div');
+    card.className = 'song-card-full reveal';
+    const paragraphs = m.text.split('\n\n').map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+    const attribution = [m.author, m.source].filter(Boolean).join(' · ');
+    const sourceLink = m.sourceUrl ? ` <a href="${m.sourceUrl}" target="_blank" style="color:var(--gold);">(source)</a>` : '';
+    card.innerHTML = `
+      <div class="song-card-header" onclick="toggleSong(this)">
+        <div>
+          <div class="song-title-sm">${m.title}</div>
+          <div class="song-author-sm">${attribution}${sourceLink}</div>
+        </div>
+        <div class="song-toggle-icon">▶</div>
+      </div>
+      <div class="song-body">${paragraphs}</div>
+    `;
+    meditationsGrid.appendChild(card);
   });
 
   // Render chalice lighting cards
