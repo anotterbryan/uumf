@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /community.html
+
+Sitemap: https://anotterbryan.github.io/uumf/sitemap.xml

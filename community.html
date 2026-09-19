@@ -4,7 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="The UUMF Community — a shared feed for the fellowship. Post updates, share photos, and connect with fellow members.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="https://www.firstuusandiego.org/uploads/1/2/7/6/127676152/published/chalice-drum-no-bkgrnd.png?1716058778">
+<meta name="theme-color" content="#1a0f05">
 <title>Community — UU Men's Fellowship</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -25,6 +30,7 @@
     </div>
     <div id="memberBadge" style="display:none; margin-top:24px; color:var(--gold); font-family:'Bebas Neue',sans-serif; letter-spacing:0.1em; font-size:0.9rem;">
       Signed in as <span id="memberBadgeName"></span> &nbsp;·&nbsp;
+      <a href="#" id="editProfileLink" style="color:var(--parch); opacity:0.6; text-decoration:underline;">edit profile</a> &nbsp;·&nbsp;
       <a href="#" id="signOutLink" style="color:var(--parch); opacity:0.6; text-decoration:underline;">sign out</a>
     </div>
   </div>
@@ -88,8 +94,8 @@
 
     <!-- Step 2: complete profile -->
     <div id="joinProfileView" style="display:none;">
-      <div class="modal-num">One More Step</div>
-      <div class="modal-title" style="border-bottom:none; margin-bottom:8px;">Complete Your Profile</div>
+      <div class="modal-num" id="joinProfileEyebrow">One More Step</div>
+      <div class="modal-title" id="joinProfileTitle" style="border-bottom:none; margin-bottom:8px;">Complete Your Profile</div>
       <p style="color:var(--ink-lt); font-size:0.95rem; margin-bottom:20px;">This is how you'll appear to fellow members in posts, comments, and the directory.</p>
       <div class="jm-field">
         <label>Display Name *</label>
@@ -199,6 +205,16 @@ function openJoinModal(view) {
   joinProfileView.style.display = view === 'profile' ? 'block' : 'none';
   hideMsg(document.getElementById('joinLoginMsg'));
   hideMsg(document.getElementById('profileMsg'));
+  if (view === 'profile') {
+    const isEdit = !!currentProfile;
+    document.getElementById('joinProfileEyebrow').textContent = isEdit ? 'Your Profile' : 'One More Step';
+    document.getElementById('joinProfileTitle').textContent = isEdit ? 'Edit Your Profile' : 'Complete Your Profile';
+    document.getElementById('profileNameInput').value  = isEdit ? (currentProfile.display_name || '') : '';
+    document.getElementById('profileBioInput').value   = isEdit ? (currentProfile.bio || '') : '';
+    document.getElementById('profilePhoneInput').value = isEdit ? (currentProfile.phone || '') : '';
+    document.getElementById('profileAvatarInput').value = '';
+    document.getElementById('profileSubmitBtn').textContent = isEdit ? 'Update Profile' : 'Save Profile';
+  }
   joinModal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -214,6 +230,11 @@ joinModal.addEventListener('click', e => { if (e.target === joinModal) closeJoin
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && joinModal.classList.contains('open')) closeJoinModal(); });
 
 document.getElementById('joinBtn').addEventListener('click', () => openJoinModal('login'));
+
+document.getElementById('editProfileLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  openJoinModal('profile');
+});
 
 // ── GATING: run `action` only once a session + completed profile exist ──
 function requireMember(action) {
@@ -317,7 +338,8 @@ document.getElementById('joinEmailBtn').addEventListener('click', async () => {
     if (error) throw error;
     showMsg(msgEl, 'Check your email for a sign-in link.', 'success');
   } catch (e) {
-    showMsg(msgEl, GENERIC_ERROR, 'error');
+    console.error('[UUMF sign-in]', e);
+    showMsg(msgEl, GENERIC_ERROR + ' (' + (e.message || e.error_description || 'unknown error') + ')', 'error');
   } finally {
     btn.disabled = false;
     btn.textContent = 'Send Magic Link';
@@ -342,12 +364,13 @@ document.getElementById('profileSubmitBtn').addEventListener('click', async () =
     return;
   }
 
+  const isEdit = !!currentProfile;
   const btn = document.getElementById('profileSubmitBtn');
   btn.disabled = true;
   btn.textContent = 'Saving...';
 
   try {
-    let avatarUrl = null;
+    let avatarUrl = isEdit ? (currentProfile.avatar_url || null) : null;
     const file = fileInput.files && fileInput.files[0];
     if (file) {
       const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
@@ -360,7 +383,7 @@ document.getElementById('profileSubmitBtn').addEventListener('click', async () =
       avatarUrl = pub.publicUrl;
     }
 
-    const { error: insertError } = await sb.from('profiles').insert({
+    const { error: insertError } = await sb.from('profiles').upsert({
       id: currentSession.user.id,
       display_name: displayName,
       bio: bioInput.value.trim() || null,
@@ -372,10 +395,11 @@ document.getElementById('profileSubmitBtn').addEventListener('click', async () =
     showMsg(msgEl, 'Profile saved! Welcome to the fellowship.', 'success');
     await refreshAuthAndRender();
   } catch (e) {
-    showMsg(msgEl, GENERIC_ERROR, 'error');
+    console.error('[UUMF save profile]', e);
+    showMsg(msgEl, GENERIC_ERROR + ' (' + (e.message || e.error_description || e.statusText || 'unknown error') + ')', 'error');
   } finally {
     btn.disabled = false;
-    btn.textContent = 'Save Profile';
+    btn.textContent = isEdit ? 'Update Profile' : 'Save Profile';
   }
 });
 
@@ -602,7 +626,8 @@ async function submitPost() {
     hideMsg(msgEl);
     await loadFeed();
   } catch (e) {
-    showMsg(msgEl, GENERIC_ERROR, 'error');
+    console.error('[UUMF submit post]', e);
+    showMsg(msgEl, GENERIC_ERROR + ' (' + (e.message || e.error_description || e.statusText || 'unknown error') + ')', 'error');
   } finally {
     btn.disabled = false;
     btn.textContent = 'Post';
