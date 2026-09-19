@@ -65,6 +65,20 @@ p{margin-bottom:7pt;font-size:10pt;line-height:1.65;color:var(--ink-lt);}
 .p-text{font-size:9pt;line-height:1.65;color:rgba(245,236,215,0.75);white-space:pre-line;}
 .chalice-svg{stroke:var(--gold);}
 .chalice-svg.white{stroke:white;}
+.leader-grid{display:grid;grid-template-columns:1fr 1fr;gap:8pt;margin-top:14pt;}
+.leader-card{border:1px solid var(--parch-dk);background:var(--smoke);padding:9pt;page-break-inside:avoid;}
+.leader-role{font-family:'Bebas Neue',Arial,sans-serif;font-size:7pt;letter-spacing:0.15em;color:var(--burnt);margin-bottom:3pt;}
+.leader-name{font-family:'Playfair Display',Georgia,serif;font-size:11pt;font-weight:700;color:var(--ink);margin-bottom:2pt;}
+.leader-contact{font-size:8.5pt;color:var(--ink-lt);margin-bottom:0;}
+.history-block{border-left:4pt solid var(--burnt);background:var(--smoke);padding:11pt 13pt;margin-bottom:12pt;page-break-inside:avoid;}
+.history-block.alt{border-left-color:var(--gold);}
+.hb-label{font-family:'Bebas Neue',Arial,sans-serif;font-size:7pt;letter-spacing:0.2em;color:var(--burnt);margin-bottom:4pt;}
+.hb-title{font-family:'Playfair Display',Georgia,serif;font-size:11pt;font-weight:700;color:var(--ink);margin-bottom:5pt;}
+.history-block p{font-size:9.5pt;margin-bottom:6pt;}
+.history-block p:last-child{margin-bottom:0;}
+.link-item{border:1px solid var(--parch-dk);background:var(--smoke);padding:13pt 14pt;margin-bottom:12pt;page-break-inside:avoid;}
+.link-label{font-family:'Bebas Neue',Arial,sans-serif;font-size:7.5pt;letter-spacing:0.15em;color:var(--burnt);margin-bottom:5pt;}
+.link-url{font-family:'Crimson Pro',Georgia,serif;font-size:10.5pt;color:var(--ink);word-break:break-all;margin-bottom:0;}
 </style>
 </head>
 <body>
@@ -96,12 +110,51 @@ p{margin-bottom:7pt;font-size:10pt;line-height:1.65;color:var(--ink-lt);}
     <span class="lbl">Contents</span>
     <h2 style="margin-bottom:4pt;">Table of <em>Contents</em></h2>
     <div class="rule"></div>
+    <div class="toc-row"><span class="toc-title">About the Fellowship</span><span class="toc-detail">Mission, values &amp; leadership</span></div>
     <div class="toc-row"><span class="toc-title">Order of Service</span><span class="toc-detail">The Fourth Monday script</span></div>
     <div class="toc-row"><span class="toc-title">Norms &amp; Traditions</span><span class="toc-detail">Nine fellowship agreements</span></div>
     <div class="toc-row"><span class="toc-title">The Chants</span><span class="toc-detail">Fifteen chants with full lyrics</span></div>
     <div class="toc-row"><span class="toc-title">Songs &amp; Hymns</span><span class="toc-detail">Nine songs with full lyrics</span></div>
     <div class="toc-row"><span class="toc-title">Poems &amp; Readings</span><span class="toc-detail">Poems and readings</span></div>
+    <div class="toc-row"><span class="toc-title">Our History</span><span class="toc-detail">Roots, the mountains &amp; what endures</span></div>
+    <div class="toc-row"><span class="toc-title">Links &amp; Resources</span><span class="toc-detail">Church, website &amp; source code</span></div>
     <p style="margin-top:18pt;font-size:8.5pt;font-style:italic;color:var(--ink-lt);">This is the practical member's handbook — the script and reference for running a gathering. For the full guide to the fellowship (mission, meetings, renewals, history), see the companion Member Guide &amp; Handbook booklet.</p>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">Who We Are</span><h2>About the <em>Fellowship</em></h2></div>
+    <p>Men deepening who we are — as brothers, sons, fathers, grandfathers, husbands, and partners.</p>
+    <h3 style="margin-top:14pt;">Our Mission</h3>
+    <p>Our mission is to support men in the quest for lives of compassion, integrity, responsibility, and balance.</p>
+    <p>Through mutually supportive work, our fellowship seeks to help men in their development as sons... Fathers... Brothers... Companions and members of society.</p>
+    <p>We are a caring, intentionally diverse brotherhood, committed to social justice and offering opportunities for intimate sharing, personal growth, and spiritual deepening.</p>
+    <p>You don't need to be a member of First UU San Diego, and you don't need to identify with any religion. You just need to be a man who wants deeper community.</p>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-inner">
+    <span class="lbl">Mission — Core Values</span>
+    <h2 style="margin-bottom:4pt;">Our <em>Values</em></h2>
+    <div class="rule"></div>
+    <div class="v-item"><div class="v-num">01</div><div class="v-text"><strong>Compassion</strong><p>For ourselves and those around us — without condition or reserve.</p></div></div>
+    <div class="v-item"><div class="v-num">02</div><div class="v-text"><strong>Integrity</strong><p>Showing up honestly in all our relationships, especially the hard ones.</p></div></div>
+    <div class="v-item"><div class="v-num">03</div><div class="v-text"><strong>Responsibility</strong><p>To our families, our communities, and the wider world we share.</p></div></div>
+    <div class="v-item"><div class="v-num">04</div><div class="v-text"><strong>Balance</strong><p>Nurturing our whole selves — mind, body, and spirit.</p></div></div>
+
+    <span class="lbl" style="margin-top:16pt;">Who to Reach</span>
+    <h2 style="margin-bottom:4pt;">Leadership &amp; <em>Contacts</em></h2>
+    <div class="rule"></div>
+    <p style="margin-bottom:8pt;">The UUMF is guided by a Steering Committee operating on a consensus model. All members are welcome to participate in governance.</p>
+    <div class="leader-grid">
+      <div class="leader-card"><div class="leader-role">Co-Convener</div><div class="leader-name">Jim Hurtado</div><div class="leader-contact">Monthly meetings &amp; general info</div></div>
+      <div class="leader-card"><div class="leader-role">Co-Convener</div><div class="leader-name">Chris Guelich</div><div class="leader-contact">Steering Committee &amp; direction</div></div>
+      <div class="leader-card"><div class="leader-role">Renewals Contact</div><div class="leader-name">Mike Dorfi</div><div class="leader-contact">Fall &amp; Spring renewal weekends</div></div>
+      <div class="leader-card"><div class="leader-role">Focus Group Coordinator</div><div class="leader-name">[Name]</div><div class="leader-contact">Focus group placement &amp; formation</div></div>
+    </div>
   </div>
 </div>
 
@@ -192,6 +245,71 @@ p{margin-bottom:7pt;font-size:10pt;line-height:1.65;color:var(--ink-lt);}
   <div class="page-inner">
     <div class="sec-head" style="background:rgba(255,255,255,0.08);"><span class="lbl" style="color:rgba(255,255,255,0.6);">Words That Hold Us</span><h2 style="color:var(--parch);">Poems &amp; <em style="color:var(--gold);">Readings</em></h2></div>
     <div id="poemsBooklet"></div>
+  </div>
+</div>
+
+<!-- HISTORY -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">Where We Came From</span><h2>Our <em>History</em></h2></div>
+    <p>The story of how a community of men came together — and why it has endured.</p>
+
+    <div class="history-block alt" style="margin-top:12pt;">
+      <div class="hb-label">Roots</div>
+      <div class="hb-title">Our Home: First UU San Diego</div>
+      <p>The UUMF meets at <strong>First Unitarian Universalist Church of San Diego</strong> — one of the oldest congregations in the city. Unitarians first gathered here in 1873, when a small Sunday School met at Horton Hall on June 22 of that year. By 1877, the group had grown and formally organized as <em>The Unitarian Society of San Diego</em>.</p>
+      <p>The Hillcrest Campus — where the UUMF holds its Fourth Monday gatherings in the Common Room — was built in 1959. The church has been a center for liberal religion, free thought, and social justice in San Diego for over 150 years.</p>
+      <p>One of the church's founding members, <strong>Alonzo Erasmus Horton</strong> — the developer whose name still marks a neighborhood downtown — was among San Diego's early Unitarians seeking to establish a center for religious education and free thought.</p>
+    </div>
+
+    <div class="history-block">
+      <div class="hb-label">The Mountains</div>
+      <div class="hb-title">Camp de Benneville Pines</div>
+      <p>The UUMF's Spring Renewal takes place at <strong>Camp de Benneville Pines</strong>, a UU camp in the San Bernardino National Forest above Angelus Oaks — at 6,800 feet elevation, surrounded by pine, cedar, and oak. The camp was founded in 1961, purchased by UU congregations from San Diego to Santa Monica to Arizona pooling their resources together.</p>
+      <p>It remains one of the few UU-affiliated camps in the country and serves over 60 groups a year. For UUMF, it has been the setting for some of the most significant weekends in men's lives — the kind of experience that men return to year after year.</p>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-inner">
+    <div class="history-block alt">
+      <div class="hb-label">Broader Movement</div>
+      <div class="hb-title">The Southern California UU Men's Network</div>
+      <p>UUMF is one of several UU men's fellowships in Southern California. The Fall Renewal near Julian brings these groups together for a multi-congregation gathering — men from San Diego to other UU churches across the region spending three days in the mountains together.</p>
+    </div>
+
+    <span class="lbl" style="color:var(--gold);margin-top:6pt;">The Thread</span>
+    <h2 style="margin-bottom:4pt;">What Has <em>Endured</em></h2>
+    <div class="rule"></div>
+    <p>Whatever year the fellowship began, and whatever the specific story of its founding, certain things have remained constant: a circle of men showing up for each other, month after month. A table with food on it. A check-in round where every voice is heard. Chants sung together. The mountains, twice a year.</p>
+    <p>The history is not only in the past. Every man who walks through the door for the first time is adding to it. Every Fourth Monday, every renewal, every focus group conversation — the story keeps going.</p>
+  </div>
+</div>
+
+<!-- LINKS & RESOURCES -->
+<div class="page">
+  <div class="page-inner">
+    <div class="sec-head"><span class="lbl">Stay Connected</span><h2>Links &amp; <em>Resources</em></h2></div>
+    <p>Where to find us online, and where this handbook's content lives.</p>
+
+    <!-- QR CODE PLACEHOLDER: could go here once provided -->
+    <div class="link-item" style="margin-top:12pt;">
+      <div class="link-label">Our Church</div>
+      <div class="link-url"><strong>First Unitarian Universalist Church of San Diego</strong><br>https://www.firstuusandiego.org</div>
+    </div>
+
+    <!-- QR CODE PLACEHOLDER: could go here once provided -->
+    <div class="link-item">
+      <div class="link-label">UUMF Website</div>
+      <div class="link-url"><strong>UU Men's Fellowship</strong><br>https://anotterbryan.github.io/uumf/</div>
+    </div>
+
+    <!-- QR CODE PLACEHOLDER: could go here once provided -->
+    <div class="link-item">
+      <div class="link-label">Source Code</div>
+      <div class="link-url"><strong>UUMF on GitHub</strong><br>https://github.com/anotterbryan/uumf</div>
+    </div>
   </div>
 </div>
 
