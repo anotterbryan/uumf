@@ -112,4 +112,47 @@ const songs = [
       "One step at a time, One step at a time, I walk forward, I walk forward."
     ]
   },
+  {
+    hymnNum: "",
+    title: "In the Company of Men",
+    author: "Chris Hassett",
+    note: "OCR'd from UUMF Binder 2, p.02; needs proofreading",
+    stanzas: [
+      `In the Company of Men
+Copyright © 2009, Chris Hassett
+In the company of men, I was raised
+In the company of men, I was praised
+In the company of men, I can cry salty tears
+In the company of men, I can face all my fears
+In the company of men, I can fart - -
+In the company of men, it’s an art
+In the company of men, I can slap a lot of backs
+In the company of men, I can kick back, relax
+In the company of men,
+In the company of men,
+In the company of men, I'm alive!
+In the company of men, I can be terrified
+In the company of men, I can hide
+In the company of men, I can play with the truth
+In the company of men, I bemoan my lost youth
+In the company of men, my life I ponder
+In the company of men, my mind can wander
+In the company of men, my thoughts can rearrange
+In the company of men, I can contemplate change
+In the company of men,
+In the company of men,
+In the company of men, I can change!
+In the company of men, I can be brave
+In the company of men, I won't behave
+In the company of men, I can walk up to a stranger
+In the company of men, I can face any danger
+In the company of men, I find myself
+In the company of men, I love myself
+In the company of men, I can celebrate the boy
+In the company of men, I'll share sadness, I'll share joy
+In the company of men,
+In the company of men,
+In the company of men, I am!`
+    ]
+  },
 ];
